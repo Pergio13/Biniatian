@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Οδηγός Λειτουργίας & Συντήρησης Εργαστηρίου</title>
+  <title>Οδηγός Λειτουργίας & Συντήρησης Εργαστηρίου Biniatian</title>
 
   <style>
     body {
@@ -182,10 +182,16 @@
       color: white;
     }
 
+    #roland h2 { border-bottom-color: #2563eb; }
     #laser h2 { border-bottom-color: #dc2626; }
     #vulcan h2 { border-bottom-color: #16a34a; }
-    #roland h2 { border-bottom-color: #2563eb; }
+    
 
+    #roland .badge {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+    
     #laser .badge {
       background: #fee2e2;
       color: #991b1b;
@@ -196,10 +202,7 @@
       color: #166534;
     }
 
-    #roland .badge {
-      background: #dbeafe;
-      color: #1d4ed8;
-    }
+    
 
     .step-btn {
       background: #2563eb;
@@ -259,10 +262,12 @@
 
 <div class="container">
 
-  <div class="tabs">
+  <div class="tabs"> 
+  
+   <button class="tab-button roland-tab" onclick="openMainTab(event, 'roland')">Roland UV Printer</button>
     <button class="tab-button laser-tab active" onclick="openMainTab(event, 'laser')">Laser</button>
     <button class="tab-button vulcan-tab" onclick="openMainTab(event, 'vulcan')">Vulcan Cutter</button>
-    <button class="tab-button roland-tab" onclick="openMainTab(event, 'roland')">Roland UV Printer</button>
+    
   </div>
 
   <section id="laser" class="tab-content active">
@@ -410,11 +415,11 @@
       <h3>Καθημερινός Έλεγχος</h3>
 
       <div class="checklist">
-        <label><input type="checkbox"> Ανακινώ καλά τα δοχεία μελανιού.</label>
-        <label><input type="checkbox"> Ανοίγω τον εκτυπωτή και περιμένω να είναι έτοιμος.</label>
-        <label><input type="checkbox"> Κάνω πάντα Test Print.</label>
-        <label><input type="checkbox"> Ελέγχω αν υπάρχουν γραμμές ή κενά στην εκτύπωση.</label>
-        <label><input type="checkbox"> Ελέγχω ότι το τραπέζι και το υλικό είναι καθαρά.</label>
+         <li> Ανακινώ καλά τα δοχεία μελανιού.</li>
+         <li> Ανοίγω τον εκτυπωτή και περιμένω να είναι έτοιμος.</li>
+         <li>Κάνω πάντα Test Print.</li>
+         <li> Ελέγχω αν υπάρχουν γραμμές ή κενά στην εκτύπωση.</li>
+         <li> Ελέγχω ότι το τραπέζι και το υλικό είναι καθαρά.</li>
       </div>
 
       <div class="notice">
@@ -426,45 +431,20 @@
     <div id="roland-cleaning" class="subtab-content">
       <h3>Καθαρισμοί</h3>
 
-      <h3>1. Head Refresh</h3>
-      <table>
-        <tr>
-          <th>Βήμα</th>
-          <th>Ενέργεια</th>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Όταν εμφανιστεί <strong>DO HEAD REFRESH</strong>, πατάμε <strong>ENTER</strong> και επιλέγουμε <strong>YES</strong>.</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Όταν εμφανιστεί <strong>SET HEAD REFRESHER</strong>, ετοιμάζουμε το εξάρτημα.</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Βάζουμε τα ειδικά μαντηλάκια μέσα στο εξάρτημα.</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>Τοποθετούμε το εξάρτημα σωστά στο μηχάνημα και πατάμε <strong>ENTER</strong>.</td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td>Όταν εμφανιστεί <strong>APPLY CL LIQUID START REFRESH</strong>, ρίχνουμε ειδικό υγρό καθαρισμού CL στο μαντηλάκι.</td>
-        </tr>
-        <tr>
-          <td>6</td>
-          <td>Κλείνουμε το καπάκι και πατάμε <strong>ENTER</strong>.</td>
-        </tr>
-        <tr>
-          <td>7</td>
-          <td>Όταν εμφανιστεί <strong>REMOVE HEAD REFRESHER</strong>, αφαιρούμε το εξάρτημα.</td>
-        </tr>
-        <tr>
-          <td>8</td>
-          <td>Πετάμε το χρησιμοποιημένο μαντηλάκι, κλείνουμε το καπάκι και πατάμε <strong>ENTER</strong>.</td>
-        </tr>
-      </table>
+      <h2>1. Head Refresh</h2>
+      
+    <ol>
+        <li>Όταν εμφανιστεί <strong>DO HEAD REFRESH</strong>, πατάμε <strong>ENTER</strong> και επιλέγουμε <strong>YES</strong>.</li>
+        <li>Όταν εμφανιστεί <strong>SET HEAD REFRESHER</strong>, ετοιμάζουμε το εξάρτημα.</li>
+        <li>Βάζουμε τα ειδικά μαντηλάκια μέσα στο εξάρτημα.</li>
+        <li>Τοποθετούμε το εξάρτημα σωστά στο μηχάνημα και πατάμε <strong>ENTER</strong>.</li>
+        <li>Όταν εμφανιστεί <strong>APPLY CL LIQUID START REFRESH</strong>, ρίχνουμε ειδικό υγρό καθαρισμού CL στο μαντηλάκι.</li>
+        <li> Κλείνουμε το καπάκι και πατάμε <strong>ENTER</strong>. </li>
+        <li>Όταν εμφανιστεί <strong>REMOVE HEAD REFRESHER</strong>, αφαιρούμε το εξάρτημα.</li>
+        <li>Πετάμε το χρησιμοποιημένο μαντηλάκι, κλείνουμε το καπάκι και πατάμε <strong>ENTER</li>
+       
+    </ol>
+      
 
       <div class="danger">
         <strong>Προσοχή:</strong><br>
@@ -476,7 +456,7 @@
         <li>Φοράμε γάντια.</li>
         <li>Χρησιμοποιούμε ειδική μπατονέτα και cleaning liquid.</li>
         <li>Μπαίνουμε από <strong>Menu > Sub Menu > Maintenance > Cleaning</strong>.</li>
-        <li>Περιμένουμε να μετακινηθεί η κεφαλή στη σωστή θέση.</li>
+        <li>Περιμένουμε να μετακινηθεί η κεφαλή στη σωστή θέση. </li>
         <li>Καθαρίζουμε προσεκτικά γύρω από την κεφαλή.</li>
         <li>Καθαρίζουμε τα καπάκια και τα wipers.</li>
         <li>Κλείνουμε το καπάκι.</li>

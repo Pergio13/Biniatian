@@ -201,6 +201,30 @@
       color: #1d4ed8;
     }
 
+    .step-btn {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .step-btn:hover {
+      background: #1d4ed8;
+    }
+
+    .guide-box {
+      display: none;
+      margin-top: 12px;
+      padding: 15px;
+      background: #eff6ff;
+      border-left: 5px solid #2563eb;
+      border-radius: 8px;
+    }
+
     footer {
       text-align: center;
       color: #6b7280;
@@ -213,7 +237,7 @@
         display: none;
       }
 
-      .tab-content, .subtab-content {
+      .tab-content, .subtab-content, .guide-box {
         display: block !important;
         box-shadow: none;
         page-break-after: always;
@@ -241,7 +265,6 @@
     <button class="tab-button roland-tab" onclick="openMainTab(event, 'roland')">Roland UV Printer</button>
   </div>
 
-  <!-- LASER -->
   <section id="laser" class="tab-content active">
     <span class="badge">Μηχάνημα 1</span>
     <h2>Σύστημα Κοπής Laser</h2>
@@ -300,7 +323,6 @@
     </div>
   </section>
 
-  <!-- VULCAN -->
   <section id="vulcan" class="tab-content">
     <span class="badge">Μηχάνημα 2</span>
     <h2>Ψηφιακός Κόφτης Vulcan</h2>
@@ -372,7 +394,6 @@
     </div>
   </section>
 
-  <!-- ROLAND -->
   <section id="roland" class="tab-content">
     <span class="badge">Μηχάνημα 3</span>
     <h2>Roland UV Printer</h2>
@@ -476,17 +497,17 @@
       </p>
 
       <ol>
-        <li>Τοποθετούμε το υλικό στο τραπέζι (Εκτός αν θέλουμε να τυπώσουμε κατευθείαν πάνω στο χαρτί).</li>
+        <li>Τοποθετούμε το υλικό στο τραπέζι, εκτός αν θέλουμε να τυπώσουμε κατευθείαν πάνω στο χαρτί.</li>
         <li>Βεβαιωνόμαστε ότι το υλικό είναι σταθερό.</li>
-        <li>Πατάμε το κουμπί <strong>"SETUP"</strong> συνεχόμενα.</li>
-        <li>Βάζουμε μέσα το τραπέζι με το <strong>πάνω βελάκι</strong> μέχρι να έρθει το υλικό που θα τυπώσουμε κάτω από τον αισθητήρα του ύψους.<strong>(Μπορεί να χρειαστεί να κατέβει λίγο το τραπέζι με το κουμπί "DOWN")</strong>.</li>
-	<li>Ανεβάζουμε το τραπέζι με το κουμπί <strong>"UP"</strong> μέχρι να σταματήσει.</li>
-	<li>Πατάμε το δεξί βελάκι και όταν η οθόνη εμφανίσει <strong>"AUTO DETECTION"</strong> πατάμε <strong>"ENTER"</strong>.</li>
-	<li>Αφού βρεί αυτόματα το ύψος του τραπεζιού θα το κατεβάσουμε λίγο χειροκίνητα για περισσότερη ασφάλεια.</li>
-	<li>Πατάμε το κουμπί <strong>"SETUP"</strong> συνεχόμενα.</li>
-	<li>Οταν η οθόνη γράψει πάλι "SETUP MEDIA" πατάμε το κουμπί <strong>"SETUP"</strong></li>
-	<li>Πατάμε το κουμπί <strong>"DOWN" 3-4 φορές</strong> για να κατέβει λίγο το τραπέζι.</li>
-	<li>Πατάμε <strong>"ENTER"</strong></li>
+        <li>Πατάμε το κουμπί <strong>SETUP</strong> συνεχόμενα.</li>
+        <li>Βάζουμε μέσα το τραπέζι με το <strong>πάνω βελάκι</strong> μέχρι να έρθει το υλικό κάτω από τον αισθητήρα ύψους. Μπορεί να χρειαστεί να κατέβει λίγο το τραπέζι με το κουμπί <strong>DOWN</strong>.</li>
+        <li>Ανεβάζουμε το τραπέζι με το κουμπί <strong>UP</strong> μέχρι να σταματήσει.</li>
+        <li>Πατάμε το δεξί βελάκι και όταν η οθόνη εμφανίσει <strong>AUTO DETECTION</strong>, πατάμε <strong>ENTER</strong>.</li>
+        <li>Αφού βρει αυτόματα το ύψος του τραπεζιού, το κατεβάζουμε λίγο χειροκίνητα για περισσότερη ασφάλεια.</li>
+        <li>Πατάμε το κουμπί <strong>SETUP</strong> συνεχόμενα.</li>
+        <li>Όταν η οθόνη γράψει πάλι <strong>SETUP MEDIA</strong>, πατάμε το κουμπί <strong>SETUP</strong>.</li>
+        <li>Πατάμε το κουμπί <strong>DOWN</strong> 3-4 φορές για να κατέβει λίγο το τραπέζι.</li>
+        <li>Πατάμε <strong>ENTER</strong>.</li>
       </ol>
 
       <div class="danger">
@@ -504,11 +525,69 @@
       </div>
 
       <ol>
-      	<li><strong>Ρυθμίζουμε το ύψος του τραπεζιού</strong></li>
-	<li>Τυπώνουμε τα μέτρα στο χαρτί.(Τα μέτρα που χρησιμοποιούμε συχνά, βρίσκονται στο <strong>VersaWorks</strong> στην καρτέλα <strong>Deigmata</strong>. Επιλέγουμε αυτό που θέλουμε και πατάμε <strong>Print</strong>)</li>
-	<li>Επιλέγουμε αυτό που θέλουμε και πατάμε <strong>Print</strong>
-	<li>Τοποθετούμε το Υλικό που θα τυπώσουμε στο τραπέζι σύμφωνα με τα μέτρα</li>
-        <li><strong>Ρυθμίζουμε το ύψος του τραπεζιού</strong></li>
+        <li>
+          <button class="step-btn" onclick="toggleGuide('height-guide-1')">
+            Ρυθμίζουμε το ύψος του τραπεζιού
+          </button>
+
+          <div id="height-guide-1" class="guide-box">
+            <h4>Διαδικασία ρύθμισης ύψους τραπεζιού</h4>
+            <ol>
+              <li>Τοποθετούμε το υλικό στο τραπέζι, εκτός αν θέλουμε να τυπώσουμε κατευθείαν πάνω στο χαρτί.</li>
+              <li>Βεβαιωνόμαστε ότι το υλικό είναι σταθερό.</li>
+              <li>Πατάμε το κουμπί <strong>SETUP</strong> συνεχόμενα.</li>
+              <li>Βάζουμε μέσα το τραπέζι με το <strong>πάνω βελάκι</strong> μέχρι να έρθει το υλικό κάτω από τον αισθητήρα ύψους.</li>
+              <li>Αν χρειαστεί, κατεβάζουμε λίγο το τραπέζι με το κουμπί <strong>DOWN</strong>.</li>
+              <li>Ανεβάζουμε το τραπέζι με το κουμπί <strong>UP</strong> μέχρι να σταματήσει.</li>
+              <li>Πατάμε το δεξί βελάκι.</li>
+              <li>Όταν η οθόνη εμφανίσει <strong>AUTO DETECTION</strong>, πατάμε <strong>ENTER</strong>.</li>
+              <li>Αφού βρει αυτόματα το ύψος, κατεβάζουμε λίγο χειροκίνητα το τραπέζι για περισσότερη ασφάλεια.</li>
+              <li>Πατάμε ξανά <strong>SETUP</strong> συνεχόμενα.</li>
+              <li>Όταν η οθόνη γράψει <strong>SETUP MEDIA</strong>, πατάμε <strong>SETUP</strong>.</li>
+              <li>Πατάμε <strong>DOWN</strong> 3-4 φορές.</li>
+              <li>Πατάμε <strong>ENTER</strong>.</li>
+            </ol>
+
+            <div class="danger">
+              <strong>Προσοχή:</strong><br>
+              Αν το ύψος δεν έχει ρυθμιστεί σωστά, υπάρχει κίνδυνος να ακουμπήσει και να καταστραφεί η κεφαλή.
+            </div>
+          </div>
+        </li>
+
+        <li>
+          Τυπώνουμε τα μέτρα στο χαρτί. Τα μέτρα που χρησιμοποιούμε συχνά βρίσκονται στο
+          <strong>VersaWorks</strong>, στην καρτέλα <strong>Deigmata</strong>.
+          Επιλέγουμε αυτό που θέλουμε και πατάμε <strong>Print</strong>.
+        </li>
+
+        <li>Τοποθετούμε το υλικό που θα τυπώσουμε στο τραπέζι σύμφωνα με τα μέτρα.</li>
+
+        <li>
+          <button class="step-btn" onclick="toggleGuide('height-guide-2')">
+            Ρυθμίζουμε ξανά το ύψος του τραπεζιού
+          </button>
+
+          <div id="height-guide-2" class="guide-box">
+            <h4>Δεύτερη ρύθμιση ύψους μετά την τοποθέτηση υλικού</h4>
+            <ol>
+              <li>Βεβαιωνόμαστε ότι το υλικό έχει τοποθετηθεί σωστά και δεν κουνιέται.</li>
+              <li>Πατάμε το κουμπί <strong>SETUP</strong> συνεχόμενα.</li>
+              <li>Φέρνουμε το υλικό κάτω από τον αισθητήρα ύψους.</li>
+              <li>Πατάμε δεξί βελάκι μέχρι να εμφανιστεί <strong>AUTO DETECTION</strong>.</li>
+              <li>Πατάμε <strong>ENTER</strong>.</li>
+              <li>Μετά την αυτόματη ρύθμιση, κατεβάζουμε λίγο το τραπέζι με <strong>DOWN</strong> 3-4 φορές.</li>
+              <li>Πατάμε <strong>ENTER</strong>.</li>
+            </ol>
+
+            <div class="notice">
+              <strong>Γιατί το κάνουμε δεύτερη φορά;</strong><br>
+              Επειδή το τελικό υλικό έχει πλέον μπει πάνω στο τραπέζι και πρέπει να μετρηθεί το πραγματικό του ύψος.
+            </div>
+          </div>
+        </li>
+
+        <li>Επιλέγουμε το τελικό αρχείο στο <strong>VersaWorks</strong> και πατάμε <strong>Print</strong>.</li>
       </ol>
     </div>
 
@@ -552,40 +631,4 @@
 </footer>
 
 <script>
-  function openMainTab(event, tabName) {
-    var i;
-    var tabContents = document.getElementsByClassName("tab-content");
-    var tabButtons = document.getElementsByClassName("tab-button");
-
-    for (i = 0; i < tabContents.length; i++) {
-      tabContents[i].classList.remove("active");
-    }
-
-    for (i = 0; i < tabButtons.length; i++) {
-      tabButtons[i].classList.remove("active");
-    }
-
-    document.getElementById(tabName).classList.add("active");
-    event.currentTarget.classList.add("active");
-  }
-
-  function openSubTab(event, tabName) {
-    var parentSection = event.currentTarget.closest(".tab-content");
-    var subContents = parentSection.getElementsByClassName("subtab-content");
-    var subButtons = parentSection.getElementsByClassName("subtab-button");
-
-    for (var i = 0; i < subContents.length; i++) {
-      subContents[i].classList.remove("active");
-    }
-
-    for (var j = 0; j < subButtons.length; j++) {
-      subButtons[j].classList.remove("active");
-    }
-
-    document.getElementById(tabName).classList.add("active");
-    event.currentTarget.classList.add("active");
-  }
-</script>
-
-</body>
-</html>
+  

@@ -1,309 +1,543 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Κεντρικός Οδηγός Λειτουργίας Εργαστηρίου</title>
-    <style>
-        /* --- Βασικές Ρυθμίσεις Σχεδίασης (Minimal & Καθαρό Ύφος) --- */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f6f9;
-            color: #333;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-        h1 {
-            color: #1e293b;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 10px;
-            margin-top: 0;
-        }
-        h2 {
-            color: #2d3748;
-            margin-top: 20px;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Οδηγός Λειτουργίας & Συντήρησης - Roland UV Printer</title>
 
-        /* --- Σύστημα Πλοήγησης (Tabs) --- */
-        .tab-navigation {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
-            border-bottom: 1px solid #cbd5e1;
-            padding-bottom: 10px;
-        }
-        .tab-button {
-            background-color: #f1f5f9;
-            border: 1px solid #cbd5e1;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-        }
-        .tab-button.active {
-            background-color: #0f172a;
-            color: #fff;
-            border-color: #0f172a;
-        }
-        .tab-content {
-            display: none; /* Κρύβει το περιεχόμενο εξ ορισμού */
-        }
-        .tab-content.active {
-            display: block; /* Εμφανίζει μόνο την ενεργή καρτέλα */
-        }
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+      line-height: 1.6;
+    }
 
-        /* --- Λίστες Διεκπεραίωσης Βημάτων (Checklists) --- */
-        .step-list {
-            list-style: none;
-            padding: 0;
-        }
-        .step-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 12px;
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            margin-bottom: 10px;
-            transition: background 0.2s ease;
-        }
-        .step-item:hover {
-            background: #f1f5f9;
-        }
-        .step-item input[type="checkbox"] {
-            margin-top: 5px;
-            transform: scale(1.2);
-            cursor: pointer;
-        }
-        /* Στυλ όταν ένα βήμα ολοκληρώνεται */
-        .step-item.completed {
-            background: #f1f5f9;
-            opacity: 0.6;
-        }
-        .step-item.completed .step-text {
-            text-decoration: line-through;
-        }
-        .step-text {
-            flex: 1;
-        }
+    header {
+      background: linear-gradient(135deg, #1f2937, #374151);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
 
-        /* --- Σύνδεσμοι & Ειδικά Κουμπιά Παραπομπής --- */
-        .action-link {
-            color: #2563eb;
-            text-decoration: none;
-            font-weight: bold;
-            border-bottom: 1px dashed #2563eb;
-            cursor: pointer;
-        }
-        .action-link:hover {
-            color: #1d4ed8;
-        }
-        .info-box {
-            background-color: #eff6ff;
-            border-left: 4px solid #3b82f6;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 0 6px 6px 0;
-        }
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+    }
 
-        /* --- Διαδραστικό Παράθυρο (Modal) για τη Ρύθμιση Ύψους --- */
-        .modal {
-            display: none; /* Κρυφό αρχικά */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            max-width: 600px;
-            width: 90%;
-            max-height: 85vh;
-            overflow-y: auto;
-            position: relative;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #e2e8f0;
-            border: none;
-            border-radius: 5px;
-            padding: 5px 10px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .close-modal:hover {
-            background: #cbd5e1;
-        }
-    </style>
+    header p {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #d1d5db;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 25px auto;
+      padding: 0 15px;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .tab-button {
+      border: none;
+      background: #e5e7eb;
+      padding: 12px 18px;
+      cursor: pointer;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .tab-button:hover {
+      background: #d1d5db;
+    }
+
+    .tab-button.active {
+      background: #2563eb;
+      color: white;
+    }
+
+    .tab-content {
+      display: none;
+      background: white;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      margin-bottom: 30px;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    h2 {
+      color: #1f2937;
+      border-bottom: 3px solid #2563eb;
+      padding-bottom: 8px;
+      margin-top: 0;
+    }
+
+    h3 {
+      color: #374151;
+      margin-top: 28px;
+    }
+
+    .notice {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 18px 0;
+    }
+
+    .success {
+      background: #ecfdf5;
+      border-left: 5px solid #10b981;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 18px 0;
+    }
+
+    .danger {
+      background: #fef2f2;
+      border-left: 5px solid #ef4444;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 18px 0;
+    }
+
+    .info {
+      background: #eff6ff;
+      border-left: 5px solid #2563eb;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 18px 0;
+    }
+
+    ul, ol {
+      padding-left: 23px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      font-size: 15px;
+    }
+
+    th {
+      background: #1f2937;
+      color: white;
+      text-align: left;
+      padding: 12px;
+    }
+
+    td {
+      border: 1px solid #e5e7eb;
+      padding: 12px;
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) {
+      background: #f9fafb;
+    }
+
+    .checklist label {
+      display: block;
+      background: #f9fafb;
+      padding: 10px;
+      margin-bottom: 8px;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .small {
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1d4ed8;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      text-align: center;
+      color: #6b7280;
+      padding: 25px;
+      font-size: 14px;
+    }
+
+    @media print {
+      .tabs {
+        display: none;
+      }
+
+      .tab-content {
+        display: block !important;
+        box-shadow: none;
+        page-break-after: always;
+      }
+
+      body {
+        background: white;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
+<header>
+  <h1>Οδηγός Λειτουργίας & Συντήρησης Εργαστηρίου</h1>
+  <p>Καθαρός οδηγός για αρχάριους — χωρισμένος ανά μηχάνημα και διαδικασία</p>
+</header>
+
 <div class="container">
-    <h1>Κεντρικός Οδηγός Λειτουργίας</h1>
-    
-    <div class="tab-navigation">
-        <button class="tab-button active" onclick="switchTab('uv-printer')">Roland UV Printer</button>
-        <button class="tab-button" onclick="switchTab('lasercut')">Lasercut</button>
+
+  <div class="tabs">
+    <button class="tab-button active" onclick="openTab(event, 'roland')">Roland UV Printer</button>
+    <button class="tab-button" onclick="openTab(event, 'quick')">Γρήγορος Έλεγχος</button>
+    <button class="tab-button" onclick="openTab(event, 'maintenance')">Συντήρηση</button>
+    <button class="tab-button" onclick="openTab(event, 'marble')">Εκτύπωση σε Μάρμαρο</button>
+  </div>
+
+  <!-- TAB 1 -->
+  <section id="roland" class="tab-content active">
+    <span class="badge">Μηχάνημα 1</span>
+    <h2>Roland UV Printer</h2>
+
+    <div class="info">
+      <strong>Σκοπός οδηγού:</strong><br>
+      Να μπορεί κάποιος που βλέπει πρώτη φορά το μηχάνημα να καταλάβει τα βασικά,
+      να κάνει σωστή προετοιμασία, απλή χρήση και βασική συντήρηση χωρίς να μπερδευτεί.
     </div>
 
-    <div id="uv-printer" class="tab-content active">
-        <h2>Διαδικασία Εκτύπωσης Δείγματος σε Μάρμαρο</h2>
-        
-        <div class="info-box">
-            <strong>Σημαντική Σημείωση Αντιστοίχισης:</strong><br>
-            Το <strong>πάνω αριστερά</strong> μέρος του ψηφιακού αρχείου στο CorelDRAW αντιστοιχεί στο <strong>κάτω δεξιά</strong> μέρος του φυσικού τραπεζιού του εκτυπωτή.
-        </div>
+    <h3>1. Βασικός κανόνας ευθυγράμμισης</h3>
+    <p>
+      Το <strong>πάνω αριστερά</strong> μέρος του ψηφιακού αρχείου στον υπολογιστή
+      μέσα από το πρόγραμμα <strong>VersaWorks</strong> αντιστοιχεί στο
+      <strong>κάτω δεξιά</strong> μέρος του φυσικού τραπεζιού του εκτυπωτή.
+    </p>
 
-        <h3>Φάση 1: Εκτύπωση Γραμμών-Οδηγών (Μέτρα)</h3>
-        <ul class="step-list">
-            <li class="step-item">
-                <input type="checkbox" onclick="toggleStep(this)">
-                <div class="step-text">Επιβεβαιώστε ότι η οθόνη είναι καθαρή (όχι σε κατάσταση CLEANING).</div>
-            </li>
-            <li class="step-item">
-                <input type="checkbox" onclick="toggleStep(this)">
-                <div class="step-text">
-                    Εκτελέστε την <span class="action-link" onclick="openModal('height-modal')">Διαδικασία Αρχικής Ρύθμισης Ύψους Τραπεζιού</span> για το γυμνό τραπέζι.
-                </div>
-            </li>
-            <li class="step-item">
-                <input type="checkbox" onclick="toggleStep(this)">
-                <div class="step-text">Στο VersaWorks, μεταβείτε στην καρτέλα <strong>Δείγματα</strong>, επιλέξτε το αρχείο <strong>μάρμαρα μέτρα</strong> και πατήστε <strong>Print</strong>.</div>
-            </li>
-            <li class="step-item">
-                <input type="checkbox" onclick="toggleStep(this)">
-                <div class="step-text">Μόλις η οθόνη αναγράψει <code>FINISHED PRINT</code>, πατήστε το πλήκτρο <strong>ENTER</strong> στο πάνελ για να βγει το τραπέζι έξω.</div>
-            </li>
-        </ul>
-
-        <h3>Φάση 2: Τοποθέτηση Υλικού & Τελική Εκτύπωση</h3>
-        <ul class="step-list">
-            <li class="step-item">
-                <input type="checkbox" onclick="toggleStep(this)">
-                <div class="step-text">Τοποθετήστε το μάρμαρο στο τραπέζι, ευθυγραμμίζοντάς το με ακρίβεια βάσει των τυπωμένων γραμμών (ξεκινώντας από κάτω δεξιά).</div>
-            </li>
-            <li class="step-item">
-                <input type="checkbox" onclick="toggleStep(this)">
-                <div class="step-text">
-                    Εκτελέστε εκ νέου την <span class="action-link" onclick="openModal('height-modal')">Διαδικασία Ρύθμισης Ύψους Τραπεζιού</span>, αυτή τη φορά για το τοποθετημένο μάρμαρο.
-                </div>
-            </li>
-            <li class="step-item">
-                <input type="checkbox" onclick="toggleStep(this)">
-                <div class="step-text">Στο VersaWorks, μεταβείτε στην καρτέλα <strong>Δουλειές</strong>, επιλέξτε το έτοιμο αρχείο εκτύπωσης και πατήστε <strong>Print</strong>.</div>
-            </li>
-        </ul>
+    <div class="notice">
+      <strong>Πρακτικά:</strong><br>
+      Όταν ετοιμάζεις αρχείο στον υπολογιστή, να θυμάσαι ότι η φυσική τοποθέτηση
+      επάνω στο τραπέζι του εκτυπωτή λειτουργεί αντίστροφα ως προς το σημείο αναφοράς.
     </div>
 
-    <div id="lasercut" class="tab-content">
-        <h2>Διαδικασία Κοπής / Χάραξης</h2>
-        <p>Οδηγίες και βήματα για το Lasercut (θα συμπληρωθούν με τη ροή των σημειώσεών σας).</p>
+    <h3>2. Τι πρέπει να κάνεις πριν από κάθε χρήση</h3>
+
+    <div class="checklist">
+      <label><input type="checkbox"> Ανακίνησε καλά τα δοχεία μελανιού.</label>
+      <label><input type="checkbox"> Άνοιξε τον εκτυπωτή και περίμενε να είναι έτοιμος.</label>
+      <label><input type="checkbox"> Κάνε πάντα ένα Test Print.</label>
+      <label><input type="checkbox"> Έλεγξε αν υπάρχουν γραμμές ή κενά στην εκτύπωση.</label>
+      <label><input type="checkbox"> Έλεγξε ότι το τραπέζι και το υλικό είναι καθαρά.</label>
     </div>
+
+    <div class="danger">
+      <strong>Προσοχή:</strong><br>
+      Αν δεν ανακινηθούν τα μελάνια, ειδικά όταν μένουν στάσιμα, μπορεί να δημιουργηθεί
+      καθίζηση και να μην τυπώνουν σωστά.
+    </div>
+
+    <h3>3. Λευκό μελάνι</h3>
+    <p>
+      Το λευκό μελάνι θέλει συχνή χρήση. Δεν είναι κακό να το βάζουμε να τυπώνει.
+      Αν μείνει στάσιμο, μπορεί να θολώσει η κεφαλή και μετά να χρειαστούν αρκετοί
+      καθαρισμοί για να επανέλθει.
+    </p>
+
+    <div class="success">
+      <strong>Καλός κανόνας:</strong><br>
+      Καλύτερα να χρησιμοποιείται συχνά λίγο λευκό μελάνι, παρά να μένει πολλές μέρες
+      χωρίς χρήση.
+    </div>
+
+    <h3>4. Γιατί εμφανίζονται γραμμές στην εκτύπωση</h3>
+    <p>
+      Οι ανεπιθύμητες γραμμές εμφανίζονται συνήθως επειδή μαζεύονται
+      <strong>σκόνη ή χνούδια στην κεφαλή</strong>. Καθώς περνάει η κεφαλή,
+      τα χνούδια ακουμπούν πάνω στο μελάνι πριν στεγνώσει και δημιουργούν ατέλειες.
+    </p>
+
+    <div class="notice">
+      <strong>Άρα:</strong><br>
+      Η καθαριότητα γύρω από την κεφαλή και το υλικό είναι πολύ σημαντική για καθαρή εκτύπωση.
+    </div>
+  </section>
+
+  <!-- TAB 2 -->
+  <section id="quick" class="tab-content">
+    <span class="badge">Γρήγορη καρτέλα</span>
+    <h2>Γρήγορος Έλεγχος Πριν την Εκτύπωση</h2>
+
+    <p>
+      Αυτή η καρτέλα είναι για καθημερινή χρήση. Την κοιτάς πριν ξεκινήσεις,
+      ώστε να αποφύγεις τα πιο συνηθισμένα λάθη.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Έλεγχος</th>
+          <th>Τι κάνω</th>
+          <th>Γιατί είναι σημαντικό</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Μελάνια</td>
+          <td>Ανακινώ καλά τα δοχεία.</td>
+          <td>Για να μην υπάρχει καθίζηση και κακή απόδοση χρώματος.</td>
+        </tr>
+        <tr>
+          <td>Test Print</td>
+          <td>Κάνω δοκιμαστική εκτύπωση.</td>
+          <td>Για να δω αν όλα τα ακροφύσια δουλεύουν σωστά.</td>
+        </tr>
+        <tr>
+          <td>Καθαριότητα</td>
+          <td>Ελέγχω για σκόνη και χνούδια.</td>
+          <td>Για να μη βγουν γραμμές ή ατέλειες.</td>
+        </tr>
+        <tr>
+          <td>Ύψος υλικού</td>
+          <td>Κάνω Auto Detection όπου χρειάζεται.</td>
+          <td>Για να μην ακουμπήσει η κεφαλή στο υλικό.</td>
+        </tr>
+        <tr>
+          <td>Τοποθέτηση υλικού</td>
+          <td>Βάζω το υλικό με ακρίβεια στο σωστό σημείο.</td>
+          <td>Για να τυπωθεί σωστά το σχέδιο.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="danger">
+      <strong>Μην ξεκινάς εκτύπωση αν:</strong>
+      <ul>
+        <li>Δεν έχει γίνει Test Print.</li>
+        <li>Υπάρχουν εμφανείς γραμμές ή κενά.</li>
+        <li>Το υλικό δεν είναι σταθερό.</li>
+        <li>Δεν έχει ρυθμιστεί σωστά το ύψος.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- TAB 3 -->
+  <section id="maintenance" class="tab-content">
+    <span class="badge">Συντήρηση</span>
+    <h2>Καθημερινή & Τακτική Συντήρηση</h2>
+
+    <h3>1. Καθημερινές ενέργειες</h3>
+    <ul>
+      <li>Ανακίνηση μελανιών πριν από κάθε χρήση.</li>
+      <li>Test Print μόλις ενεργοποιηθεί ο εκτυπωτής.</li>
+      <li>Έλεγχος για γραμμές, κενά ή αλλοιώσεις στην εκτύπωση.</li>
+      <li>Καθαρό τραπέζι και καθαρό υλικό πριν την εκτύπωση.</li>
+      <li>Χρήση λευκού μελανιού ανά τακτά διαστήματα.</li>
+    </ul>
+
+    <h3>2. Εβδομαδιαίος καθαρισμός</h3>
+    <p>
+      Μία φορά την εβδομάδα πρέπει να γίνεται σχολαστικός καθαρισμός
+      με την ειδική μπατονέτα.
+    </p>
+
+    <div class="notice">
+      <strong>Στόχος καθαρισμού:</strong><br>
+      Να απομακρυνθούν σκόνες, χνούδια και υπολείμματα μελανιού που μπορούν να επηρεάσουν
+      την κεφαλή και την ποιότητα της εκτύπωσης.
+    </div>
+
+    <h3>3. Διαδικασία Head Refresh</h3>
+    <p>
+      Το Head Refresh γίνεται καθημερινά ή μέρα παρά μέρα, ανάλογα με τη χρήση.
+      Γίνεται υποχρεωτικά όταν εμφανιστεί σχετικό μήνυμα στην οθόνη του μηχανήματος.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Βήμα</th>
+          <th>Ενέργεια</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Όταν η οθόνη γράψει <strong>DO HEAD REFRESH</strong>, πατάμε <strong>ENTER</strong> και μετά επιλέγουμε <strong>YES</strong>.</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Το μηχάνημα εμφανίζει το μήνυμα <strong>SET HEAD REFRESHER</strong>.</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Προετοιμάζουμε το ειδικό εξάρτημα head refresh. Αφαιρούμε το καπάκι και τοποθετούμε μέσα τα ειδικά μαντηλάκια.</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Τοποθετούμε το εξάρτημα σωστά στο μηχάνημα και πατάμε <strong>ENTER</strong>.</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Η οθόνη δείχνει <strong>APPLY CL LIQUID START REFRESH</strong>.</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Παίρνουμε το ειδικό υγρό καθαρισμού που γράφει <strong>CL</strong> ή <strong>CL/SL/CL</strong>.</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Με το σταγονόμετρο ρίχνουμε μερικές σταγόνες ώστε να ποτίσει καλά όλη η επιφάνεια του μαντηλιού.</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Κλείνουμε το καπάκι του UV εκτυπωτή και πατάμε <strong>ENTER</strong>. Το μηχάνημα ξεκινά αυτόματα τη διαδικασία.</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Όταν τελειώσει, εμφανίζεται <strong>REMOVE HEAD REFRESHER</strong>.</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>Ανοίγουμε το καπάκι, βγάζουμε το εξάρτημα και πετάμε το χρησιμοποιημένο μαντηλάκι.</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td>Κλείνουμε το καπάκι και πατάμε <strong>ENTER</strong> για επιβεβαίωση.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="danger">
+      <strong>Προσοχή:</strong><br>
+      Το χρησιμοποιημένο μαντηλάκι έχει πάνω μελάνι. Το πετάμε και δεν το ξαναχρησιμοποιούμε.
+    </div>
+  </section>
+
+  <!-- TAB 4 -->
+  <section id="marble" class="tab-content">
+    <span class="badge">Διαδικασία εργασίας</span>
+    <h2>Εκτύπωση σε Μάρμαρο</h2>
+
+    <p>
+      Η διαδικασία αυτή αφορά εκτύπωση επάνω σε μάρμαρο με χρήση οδηγών,
+      σωστή ρύθμιση ύψους και τελική εκτύπωση από το VersaWorks.
+    </p>
+
+    <div class="info">
+      <strong>Βασική λογική:</strong><br>
+      Πρώτα τυπώνουμε οδηγούς στο τραπέζι, μετά τοποθετούμε το μάρμαρο επάνω στους οδηγούς,
+      ξαναρυθμίζουμε το ύψος και στο τέλος τυπώνουμε το τελικό αρχείο.
+    </div>
+
+    <h3>Βήματα εκτύπωσης</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Βήμα</th>
+          <th>Τι κάνω</th>
+          <th>Σημείωση για αρχάριο</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Ελέγχω ότι η οθόνη είναι καθαρή και έτοιμη.</td>
+          <td>Δεν πρέπει να εκτελείται αυτόματος καθαρισμός.</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Κάνω πρώτη ρύθμιση ύψους με <strong>Auto Detection</strong> για το γυμνό τραπέζι.</td>
+          <td>Αυτό βοηθά το μηχάνημα να ξέρει το ύψος πριν μπει το υλικό.</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Στο VersaWorks, από την καρτέλα <strong>Δείγματα</strong>, επιλέγω το αρχείο <strong>μάρμαρα μέτρα</strong> και πατάω <strong>Print</strong>.</td>
+          <td>Το μηχάνημα τυπώνει τις γραμμές-οδηγούς.</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Όταν εμφανιστεί <strong>FINISHED PRINT</strong>, πατάω <strong>ENTER</strong>.</td>
+          <td>Το τραπέζι βγαίνει έξω για να μπορέσεις να τοποθετήσεις το μάρμαρο.</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Τοποθετώ το μάρμαρο με ακρίβεια επάνω στις τυπωμένες γραμμές.</td>
+          <td>Ξεκινάω αυστηρά από την <strong>κάτω δεξιά γωνία</strong>.</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Κάνω δεύτερη ρύθμιση ύψους, αυτή τη φορά πάνω από το τοποθετημένο μάρμαρο.</td>
+          <td>Αυτό προστατεύει την κεφαλή και βοηθά στη σωστή εκτύπωση.</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Στο VersaWorks, από την καρτέλα <strong>Δουλειές</strong>, επιλέγω το επιθυμητό αρχείο από τα <strong>12 μάρμαρα</strong> και πατάω <strong>Print</strong>.</td>
+          <td>Αυτό είναι το τελικό τύπωμα.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="danger">
+      <strong>Σημαντικό:</strong><br>
+      Αν το μάρμαρο δεν τοποθετηθεί σωστά στις γραμμές-οδηγούς, η εκτύπωση μπορεί να βγει στραβή ή εκτός θέσης.
+    </div>
+
+    <div class="success">
+      <strong>Ασφαλής τρόπος:</strong><br>
+      Μην βιάζεσαι στο βήμα της τοποθέτησης. Καλύτερα λίγα δευτερόλεπτα παραπάνω έλεγχος,
+      παρά λάθος εκτύπωση σε υλικό.
+    </div>
+  </section>
+
 </div>
 
-<div id="height-modal" class="modal">
-    <div class="modal-content">
-        <button class="close-modal" onclick="closeModal('height-modal')">Κλείσιμο [X]</button>
-        <h2>Διαδικασία Ρύθμισης Ύψους Τραπεζιού</h2>
-        <hr>
-        <ul class="step-list">
-            <li class="step-item">
-                <input type="checkbox" onclick="toggleStep(this)">
-                <div class="step-text">Πατήστε το κουμπί <strong>SETUP</strong> μία φορά (Ένδειξη: <code>SETUP MEDIA</code>).</div>
-            </li>
-            <li class="step-item">
-                <input type="checkbox" onclick="toggleStep(this)">
-                <div class="step-text">Κρατήστε πατημένο το <strong>πάνω βέλος</strong> μέχρι το τραπέζι να εισέλθει πλήρως στο μηχάνημα.</div>
-            </li>
-            <li class="step-item">
-                <input type="checkbox" onclick="toggleStep(this)">
-                <div class="step-text">Πατήστε το κουμπί <strong>TABLE UP</strong> ώστε να ανέβει το τραπέζι όσο το δυνατόν ψηλότερα.</div>
-            </li>
-            <li class="step-item">
-                <input type="checkbox" onclick="toggleStep(this)">
-                <div class="step-text">Πατήστε το <strong>δεξί βέλος</strong> στο πάνελ. Στην οθόνη θα εμφανιστεί η επιλογή <code>AUTO DETECTION</code>.</div>
-            </li>
-            <li class="step-item">
-                <input type="checkbox" onclick="toggleStep(this)">
-                <div class="step-text">Πατήστε <strong>ENTER</strong>. Το μηχάνημα υπολογίζει αυτόματα το ύψος.</div>
-            </li>
-            <li class="step-item">
-                <input type="checkbox" onclick="toggleStep(this)">
-                <div class="step-text"><strong>Βήμα Ασφαλείας:</strong> Κρατήστε πατημένο το κουμπί <strong>SETUP</strong> για έξοδο από την τρέχουσα μέτρηση.</div>
-            </li>
-            <li class="step-item">
-                <input type="checkbox" onclick="toggleStep(this)">
-                <div class="step-text">Πατήστε ξανά <strong>SETUP</strong>, πατήστε το κουμπί <strong>TABLE DOWN 3 με 4 φορές</strong> (κλικ) για ασφάλεια κεφαλής, και έπειτα πατήστε <strong>ENTER</strong>.</div>
-            </li>
-        </ul>
-    </div>
-</div>
+<footer>
+  Οδηγός εργαστηρίου — Έκδοση HTML για εύκολη χρήση από αρχάριους
+</footer>
 
 <script>
-    /* Συνάρτηση εναλλαγής καρτελών (Tabs).
-       Αποκρύπτει όλες τις καρτέλες και εμφανίζει μόνο αυτή με το ID που επιλέχθηκε.
-    */
-    function switchTab(tabId) {
-        // Αφαίρεση ενεργής κλάσης από όλα τα περιεχόμενα
-        document.querySelectorAll('.tab-content').forEach(tab => {
-            tab.classList.remove('active');
-        });
-        // Αφαίρεση ενεργής κλάσης από όλα τα κουμπιά
-        document.querySelectorAll('.tab-button').forEach(button => {
-            button.classList.remove('active');
-        });
-        
-        // Ενεργοποίηση επιλεγμένου περιεχομένου και κουμπιού
-        document.getElementById(tabId).classList.add('active');
-        event.currentTarget.classList.add('active');
+  function openTab(event, tabName) {
+    var i;
+    var tabContents = document.getElementsByClassName("tab-content");
+    var tabButtons = document.getElementsByClassName("tab-button");
+
+    for (i = 0; i < tabContents.length; i++) {
+      tabContents[i].classList.remove("active");
     }
 
-    /* Συνάρτηση για το άνοιγμα του Modal (Παράθυρο Ύψους).
-    */
-    function openModal(modalId) {
-        document.getElementById(modalId).style.display = 'flex';
+    for (i = 0; i < tabButtons.length; i++) {
+      tabButtons[i].classList.remove("active");
     }
 
-    /* Συνάρτηση για το κλείσιμο του Modal.
-    */
-    function closeModal(modalId) {
-        document.getElementById(modalId).style.display = 'none';
-    }
-
-    /* Συνάρτηση ελέγχου των Checkboxes.
-       Προσθέτει ή αφαιρεί την κλάση 'completed' στο γονικό στοιχείο <li> για οπτική διαγραφή.
-    */
-    function toggleStep(checkbox) {
-        const listItem = checkbox.closest('.step-item');
-        if (checkbox.checked) {
-            listItem.classList.add('completed');
-        } else {
-            listItem.classList.remove('completed');
-        }
-    }
+    document.getElementById(tabName).classList.add("active");
+    event.currentTarget.classList.add("active");
+  }
 </script>
 
 </body>
 </html>
-

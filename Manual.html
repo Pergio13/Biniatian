@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Οδηγός Λειτουργίας & Συντήρησης Εργαστηρίου</title>
 
   <style>
@@ -38,14 +38,14 @@
       padding: 0 15px;
     }
 
-    .tabs {
+    .tabs, .subtabs {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       margin-bottom: 20px;
     }
 
-    .tab-button {
+    .tab-button, .subtab-button {
       border: none;
       background: #e5e7eb;
       padding: 12px 18px;
@@ -56,16 +56,11 @@
       transition: 0.2s;
     }
 
-    .tab-button:hover {
+    .tab-button:hover, .subtab-button:hover {
       background: #d1d5db;
     }
 
-    .tab-button.active {
-      background: #2563eb;
-      color: white;
-    }
-
-    .tab-content {
+    .tab-content, .subtab-content {
       display: none;
       background: white;
       padding: 25px;
@@ -74,7 +69,7 @@
       margin-bottom: 30px;
     }
 
-    .tab-content.active {
+    .tab-content.active, .subtab-content.active {
       display: block;
     }
 
@@ -88,6 +83,14 @@
     h3 {
       color: #374151;
       margin-top: 28px;
+    }
+
+    .info {
+      background: #eff6ff;
+      border-left: 5px solid #2563eb;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 18px 0;
     }
 
     .notice {
@@ -109,14 +112,6 @@
     .danger {
       background: #fef2f2;
       border-left: 5px solid #ef4444;
-      padding: 15px;
-      border-radius: 8px;
-      margin: 18px 0;
-    }
-
-    .info {
-      background: #eff6ff;
-      border-left: 5px solid #2563eb;
       padding: 15px;
       border-radius: 8px;
       margin: 18px 0;
@@ -165,13 +160,45 @@
 
     .badge {
       display: inline-block;
-      background: #dbeafe;
-      color: #1d4ed8;
       padding: 4px 10px;
       border-radius: 20px;
       font-size: 13px;
       font-weight: bold;
       margin-bottom: 10px;
+    }
+
+    .laser-tab.active, .laser-sub.active {
+      background: #dc2626;
+      color: white;
+    }
+
+    .vulcan-tab.active, .vulcan-sub.active {
+      background: #16a34a;
+      color: white;
+    }
+
+    .roland-tab.active, .roland-sub.active {
+      background: #2563eb;
+      color: white;
+    }
+
+    #laser h2 { border-bottom-color: #dc2626; }
+    #vulcan h2 { border-bottom-color: #16a34a; }
+    #roland h2 { border-bottom-color: #2563eb; }
+
+    #laser .badge {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    #vulcan .badge {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    #roland .badge {
+      background: #dbeafe;
+      color: #1d4ed8;
     }
 
     footer {
@@ -182,11 +209,11 @@
     }
 
     @media print {
-      .tabs {
+      .tabs, .subtabs {
         display: none;
       }
 
-      .tab-content {
+      .tab-content, .subtab-content {
         display: block !important;
         box-shadow: none;
         page-break-after: always;
@@ -203,61 +230,73 @@
 
 <header>
   <h1>Οδηγός Λειτουργίας & Συντήρησης Εργαστηρίου</h1>
-  <p>Χωρισμένος ανά μηχάνημα - απλός οδηγός για αρχάριους</p>
+  <p>Χωρισμένος ανά μηχάνημα και ανά διαδικασία, ώστε να τον χρησιμοποιεί και αρχάριος</p>
 </header>
 
 <div class="container">
 
   <div class="tabs">
-    <button class="tab-button active" onclick="openTab(event, 'laser')">Laser</button>
-    <button class="tab-button" onclick="openTab(event, 'vulcan')">Vulcan Cutter</button>
-    <button class="tab-button" onclick="openTab(event, 'roland')">Roland UV Printer</button>
-    <button class="tab-button" onclick="openTab(event, 'quick')">Γρήγορος Έλεγχος</button>
+    <button class="tab-button laser-tab active" onclick="openMainTab(event, 'laser')">Laser</button>
+    <button class="tab-button vulcan-tab" onclick="openMainTab(event, 'vulcan')">Vulcan Cutter</button>
+    <button class="tab-button roland-tab" onclick="openMainTab(event, 'roland')">Roland UV Printer</button>
   </div>
 
   <!-- LASER -->
   <section id="laser" class="tab-content active">
     <span class="badge">Μηχάνημα 1</span>
     <h2>Σύστημα Κοπής Laser</h2>
-    <p><strong>Polar 80 EL / Universal Laser Systems</strong></p>
 
-    <div class="info">
-      <strong>Τι κάνει:</strong><br>
-      Κόβει υλικά όπως plexiglass με βάση το αρχείο που έχει ετοιμαστεί στον υπολογιστή.
-      Το πιο σημαντικό εδώ είναι η σωστή προετοιμασία του αρχείου.
+    <div class="subtabs">
+      <button class="subtab-button laser-sub active" onclick="openSubTab(event, 'laser-basic')">Βασικά</button>
+      <button class="subtab-button laser-sub" onclick="openSubTab(event, 'laser-file')">Αρχείο Κοπής</button>
+      <button class="subtab-button laser-sub" onclick="openSubTab(event, 'laser-trouble')">Troubleshooting</button>
     </div>
 
-    <h3>1. Προετοιμασία αρχείου</h3>
-    <ul>
-      <li>Ολοκληρώνουμε πρώτα τη σχεδίαση ή την εισαγωγή του αντικειμένου.</li>
-      <li>Δημιουργούμε το τελικό <strong>contour / περίγραμμα κοπής</strong>.</li>
-      <li>Το περίγραμμα πρέπει να είναι <strong>κόκκινο</strong>.</li>
-      <li>Το πάχος της γραμμής πρέπει να είναι αυστηρά <strong>hairline</strong>.</li>
-      <li>Κάνουμε <strong>mirror / καθρεπτισμό</strong> στο αρχείο πριν την κοπή.</li>
-    </ul>
+    <div id="laser-basic" class="subtab-content active">
+      <h3>Τι κάνει το Laser</h3>
+      <p>Κόβει ή χαράζει υλικά, όπως plexiglass, με βάση το αρχείο που ετοιμάζεται στον υπολογιστή.</p>
 
-    <div class="danger">
-      <strong>Προσοχή:</strong><br>
-      Αν η γραμμή δεν είναι hairline, το laser μπορεί να τη διαβάσει σαν χάραξη και όχι σαν κοπή.
+      <div class="info">
+        <strong>Βασικός στόχος:</strong><br>
+        Να είναι σωστό το αρχείο πριν σταλεί στο μηχάνημα, γιατί το Laser ακολουθεί ακριβώς τις γραμμές που του δίνουμε.
+      </div>
     </div>
 
-    <h3>2. Διαστάσεις χώρου εργασίας</h3>
-    <ul>
-      <li>Ανοίγουμε νέα σελίδα εργασίας.</li>
-      <li>Ορίζουμε διαστάσεις <strong>60 x 40 cm</strong>.</li>
-      <li>Τοποθετούμε τα αντικείμενα σωστά μέσα σε αυτόν τον χώρο.</li>
-    </ul>
+    <div id="laser-file" class="subtab-content">
+      <h3>Προετοιμασία αρχείου κοπής</h3>
+      <ul>
+        <li>Φτιάχνουμε το τελικό περίγραμμα κοπής.</li>
+        <li>Το περίγραμμα πρέπει να είναι <strong>κόκκινο</strong>.</li>
+        <li>Το πάχος της γραμμής πρέπει να είναι <strong>hairline</strong>.</li>
+        <li>Ορίζουμε σελίδα εργασίας <strong>60 x 40 cm</strong>.</li>
+        <li>Κάνουμε <strong>mirror / καθρεπτισμό</strong> πριν την κοπή.</li>
+      </ul>
 
-    <h3>3. Nesting / σωστή κατανομή</h3>
-    <p>
-      Βάζουμε τα αντικείμενα όσο πιο σωστά γίνεται στο φύλλο plexiglass,
-      ώστε να μειωθεί η φύρα και να χρησιμοποιηθεί καλύτερα το υλικό.
-    </p>
+      <div class="danger">
+        <strong>Προσοχή:</strong><br>
+        Αν η γραμμή δεν είναι hairline, μπορεί να γίνει χάραξη αντί για κοπή.
+      </div>
+    </div>
 
-    <div class="success">
-      <strong>Ασφαλής τρόπος:</strong><br>
-      Πριν στείλεις την κοπή, έλεγξε 3 πράγματα:
-      κόκκινο περίγραμμα, hairline γραμμή, mirror.
+    <div id="laser-trouble" class="subtab-content">
+      <h3>Troubleshooting Laser</h3>
+      <table>
+        <tr>
+          <th>Πρόβλημα</th>
+          <th>Πιθανή αιτία</th>
+          <th>Τι κάνω</th>
+        </tr>
+        <tr>
+          <td>Δεν κόβει σωστά</td>
+          <td>Λάθος πάχος γραμμής ή ρύθμιση υλικού</td>
+          <td>Ελέγχω hairline, υλικό και ρυθμίσεις ισχύος.</td>
+        </tr>
+        <tr>
+          <td>Κόβει από λάθος πλευρά</td>
+          <td>Δεν έγινε mirror</td>
+          <td>Επιστρέφω στο αρχείο και κάνω καθρεπτισμό.</td>
+        </tr>
+      </table>
     </div>
   </section>
 
@@ -265,83 +304,72 @@
   <section id="vulcan" class="tab-content">
     <span class="badge">Μηχάνημα 2</span>
     <h2>Ψηφιακός Κόφτης Vulcan</h2>
-    <p><strong>Vulcan SC / SE 500e</strong></p>
 
-    <div class="info">
-      <strong>Τι κάνει:</strong><br>
-      Κόβει εκτυπωμένα αυτοκόλλητα ή χαρτιά, χρησιμοποιώντας σημάδια αναγνώρισης
-      ώστε να καταλάβει πού πρέπει να γίνει η κοπή.
+    <div class="subtabs">
+      <button class="subtab-button vulcan-sub active" onclick="openSubTab(event, 'vulcan-basic')">Βασικά</button>
+      <button class="subtab-button vulcan-sub" onclick="openSubTab(event, 'vulcan-cut')">Διαδικασία Κοπής</button>
+      <button class="subtab-button vulcan-sub" onclick="openSubTab(event, 'vulcan-trouble')">Troubleshooting</button>
     </div>
 
-    <h3>1. Βήματα στο CorelDRAW 2017</h3>
-    <ol>
-      <li>Ανοίγουμε το <strong>CorelDRAW 2017</strong>.</li>
-      <li>Εισάγουμε το αρχείο που έχει ετοιμαστεί από το γραφιστικό τμήμα.</li>
-      <li>Δημιουργούμε νέα σελίδα με τις πραγματικές διαστάσεις του χαρτιού, π.χ. <strong>25 x 35 cm</strong>.</li>
-      <li>Από το plugin πάνω δεξιά επιλέγουμε <strong>Create Registration Marks</strong>.</li>
-      <li>Πατάμε <strong>Create</strong> για να μπουν τα σημάδια αναγνώρισης.</li>
-      <li>Μετά την εκτύπωση, επιλέγουμε <strong>Send to SignCut Pro 2</strong>.</li>
-    </ol>
+    <div id="vulcan-basic" class="subtab-content active">
+      <h3>Τι κάνει το Vulcan</h3>
+      <p>Κόβει εκτυπωμένα αυτοκόλλητα ή χαρτιά με βάση σημάδια αναγνώρισης.</p>
 
-    <div class="notice">
-      <strong>Γιατί χρησιμοποιούμε CorelDRAW 2017:</strong><br>
-      Επειδή σε αυτή την έκδοση λειτουργεί σταθερά το plugin του κατασκευαστή.
+      <div class="info">
+        <strong>Βασικός στόχος:</strong><br>
+        Να διαβάσει σωστά τα registration marks και να κόψει ακριβώς γύρω από το σχέδιο.
+      </div>
     </div>
 
-    <h3>2. Ρυθμίσεις στο SignCut Pro 2</h3>
-    <ul>
-      <li>Από την αριστερή εργαλειοθήκη επιλέγουμε <strong>Contour Cut</strong>.</li>
-      <li>Στα <strong>Advanced Settings</strong> επιλέγουμε το σωστό χρώμα κοπής.</li>
-      <li>Φορτώνουμε τις προκαθορισμένες τιμές ανάλογα με το υλικό.</li>
-    </ul>
+    <div id="vulcan-cut" class="subtab-content">
+      <h3>Διαδικασία κοπής</h3>
+      <ol>
+        <li>Ανοίγω το <strong>CorelDRAW 2017</strong>.</li>
+        <li>Εισάγω το αρχείο.</li>
+        <li>Δημιουργώ νέα σελίδα στις πραγματικές διαστάσεις του χαρτιού.</li>
+        <li>Επιλέγω <strong>Create Registration Marks</strong>.</li>
+        <li>Στέλνω στο <strong>SignCut Pro 2</strong>.</li>
+        <li>Τοποθετώ το χαρτί στο Vulcan.</li>
+        <li>Ορίζω <strong>Origin</strong>.</li>
+        <li>Ενεργοποιώ <strong>Vacuum</strong>.</li>
+        <li>Κάνω <strong>Test Cut</strong> αν δεν είμαι σίγουρος.</li>
+        <li>Πατάω <strong>Cut Out</strong>.</li>
+      </ol>
 
-    <table>
-      <thead>
+      <table>
         <tr>
           <th>Υλικό</th>
           <th>Tool Force</th>
           <th>Tool Speed</th>
         </tr>
-      </thead>
-      <tbody>
         <tr>
-          <td>Αυτοκόλλητο / Vinyl / Sticker</td>
+          <td>Αυτοκόλλητο / Sticker / Vinyl</td>
           <td>80</td>
           <td>700</td>
         </tr>
-      </tbody>
-    </table>
-
-    <h3>3. Χειρισμός μηχανήματος</h3>
-    <ol>
-      <li>Τοποθετούμε το εκτυπωμένο χαρτί ή αυτοκόλλητο στο τραπέζι του Vulcan.</li>
-      <li>Το ευθυγραμμίζουμε σωστά.</li>
-      <li>Μετακινούμε την κεφαλή ώστε το μαχαίρι να πάει πάνω στο αρχικό mark.</li>
-      <li>Πατάμε <strong>Origin</strong> στην οθόνη του μηχανήματος.</li>
-      <li>Ενεργοποιούμε το <strong>Vacuum</strong> για να κρατηθεί σταθερό το φύλλο.</li>
-      <li>Πατάμε <strong>OK</strong> ή <strong>Cut Out</strong> στον υπολογιστή.</li>
-    </ol>
-
-    <div class="danger">
-      <strong>Κρίσιμος έλεγχος:</strong><br>
-      Πριν από κανονική κοπή, αν δεν είμαστε σίγουροι, κάνουμε πάντα <strong>Test Cut</strong>.
-      Έτσι βλέπουμε αν το μαχαιράκι κόβει σωστά χωρίς να καταστρέφει το υλικό.
+      </table>
     </div>
 
-    <h3>4. Έλεγχος κατά την κοπή</h3>
-    <p>
-      Αν χρειάζεται να ελέγξουμε την ποιότητα της κοπής, χρησιμοποιούμε το κουμπί
-      <strong>Pause</strong> ή το <strong>Speed / Force</strong>. Πατώντας το ξανά,
-      η εργασία συνεχίζεται.
-    </p>
-
-    <h3>5. Μαζική παραγωγή</h3>
-    <ol>
-      <li>Μόλις τελειώσει η πρώτη κοπή, αφαιρούμε το έτοιμο φύλλο.</li>
-      <li>Τοποθετούμε το επόμενο ίδιο εκτυπωμένο φύλλο.</li>
-      <li>Πατάμε <strong>Move to Origin</strong>.</li>
-      <li>Πατάμε <strong>Recap</strong> για επανάληψη της ίδιας κοπής.</li>
-    </ol>
+    <div id="vulcan-trouble" class="subtab-content">
+      <h3>Troubleshooting Vulcan</h3>
+      <table>
+        <tr>
+          <th>Πρόβλημα</th>
+          <th>Πιθανή αιτία</th>
+          <th>Τι κάνω</th>
+        </tr>
+        <tr>
+          <td>Κόβει στραβά</td>
+          <td>Λάθος origin ή κακή ευθυγράμμιση φύλλου</td>
+          <td>Ξαναβάζω το φύλλο ίσια και ορίζω ξανά origin.</td>
+        </tr>
+        <tr>
+          <td>Δεν κόβει αρκετά</td>
+          <td>Χαμηλή δύναμη μαχαιριού</td>
+          <td>Κάνω test cut και αυξάνω σταδιακά το force.</td>
+        </tr>
+      </table>
+    </div>
   </section>
 
   <!-- ROLAND -->
@@ -349,169 +377,181 @@
     <span class="badge">Μηχάνημα 3</span>
     <h2>Roland UV Printer</h2>
 
-    <div class="info">
-      <strong>Τι κάνει:</strong><br>
-      Εκτυπώνει επάνω σε υλικά με UV μελάνια. Θέλει σωστή χρήση, συχνό test print
-      και σταθερή συντήρηση για να μη βουλώσουν οι κεφαλές.
+    <div class="subtabs">
+      <button class="subtab-button roland-sub active" onclick="openSubTab(event, 'roland-daily')">Καθημερινός Έλεγχος</button>
+      <button class="subtab-button roland-sub" onclick="openSubTab(event, 'roland-cleaning')">Καθαρισμοί</button>
+      <button class="subtab-button roland-sub" onclick="openSubTab(event, 'roland-height')">Ύψος Τραπεζιού</button>
+      <button class="subtab-button roland-sub" onclick="openSubTab(event, 'roland-print')">Εκτύπωση</button>
+      <button class="subtab-button roland-sub" onclick="openSubTab(event, 'roland-trouble')">Troubleshooting</button>
     </div>
 
-    <h3>1. Βασικός κανόνας ευθυγράμμισης</h3>
-    <p>
-      Το <strong>πάνω αριστερά</strong> μέρος του ψηφιακού αρχείου στον υπολογιστή
-      αντιστοιχεί στο <strong>κάτω δεξιά</strong> μέρος του φυσικού τραπεζιού του εκτυπωτή.
-    </p>
+    <div id="roland-daily" class="subtab-content active">
+      <h3>Καθημερινός Έλεγχος</h3>
 
-    <h3>2. Πριν από κάθε χρήση</h3>
-    <div class="checklist">
-      <label><input type="checkbox"> Ανακινώ καλά τα δοχεία μελανιού.</label>
-      <label><input type="checkbox"> Ανοίγω τον εκτυπωτή και περιμένω να είναι έτοιμος.</label>
-      <label><input type="checkbox"> Κάνω πάντα Test Print.</label>
-      <label><input type="checkbox"> Ελέγχω αν υπάρχουν γραμμές ή κενά.</label>
-      <label><input type="checkbox"> Ελέγχω ότι το τραπέζι και το υλικό είναι καθαρά.</label>
+      <div class="checklist">
+        <label><input type="checkbox"> Ανακινώ καλά τα δοχεία μελανιού.</label>
+        <label><input type="checkbox"> Ανοίγω τον εκτυπωτή και περιμένω να είναι έτοιμος.</label>
+        <label><input type="checkbox"> Κάνω πάντα Test Print.</label>
+        <label><input type="checkbox"> Ελέγχω αν υπάρχουν γραμμές ή κενά στην εκτύπωση.</label>
+        <label><input type="checkbox"> Ελέγχω ότι το τραπέζι και το υλικό είναι καθαρά.</label>
+      </div>
+
+      <div class="notice">
+        <strong>Λευκό μελάνι:</strong><br>
+        Καλό είναι να χρησιμοποιείται συχνά. Αν μείνει στάσιμο, μπορεί να θολώσει η κεφαλή και να χρειαστούν πολλοί καθαρισμοί.
+      </div>
     </div>
 
-    <h3>3. Test Print</h3>
-    <ol>
-      <li>Στην οθόνη εμφανίζεται <strong>Setup Media</strong>.</li>
-      <li>Τοποθετούμε στην κάτω δεξιά γωνία ένα μικρό κομμάτι διαφάνειας περίπου <strong>7 x 10 cm</strong>.</li>
-      <li>Στερεώνουμε τη διαφάνεια με χαρτοταινία στις δύο άκρες.</li>
-      <li>Κάνουμε ρύθμιση ύψους υλικού.</li>
-      <li>Πατάμε <strong>Function</strong>.</li>
-      <li>Μπαίνουμε στο <strong>Cleaning</strong>.</li>
-      <li>Επιλέγουμε <strong>Test Print</strong> και πατάμε <strong>Enter</strong>.</li>
-    </ol>
+    <div id="roland-cleaning" class="subtab-content">
+      <h3>Καθαρισμοί</h3>
 
-    <div class="notice">
-      <strong>Το Test Print δείχνει:</strong><br>
-      Αν κάποιο nozzle είναι βουλωμένο ή αν κάποιο χρώμα δεν τυπώνει σωστά.
-    </div>
-
-    <h3>4. Λευκό μελάνι</h3>
-    <p>
-      Το λευκό μελάνι πρέπει να χρησιμοποιείται συχνά. Καλό είναι κάθε 2-3 ημέρες
-      να στέλνεται μια μικρή εκτύπωση με λευκό, ώστε να μη μένει στάσιμο.
-    </p>
-
-    <div class="danger">
-      <strong>Αν το λευκό μείνει στάσιμο:</strong><br>
-      Μπορεί να θολώσει η κεφαλή και να χρειαστούν πολλοί καθαρισμοί.
-    </div>
-
-    <h3>5. Medium Cleaning για λευκό μελάνι</h3>
-    <ol>
-      <li>Πατάμε <strong>Function</strong>.</li>
-      <li>Μπαίνουμε στο <strong>Cleaning</strong>.</li>
-      <li>Επιλέγουμε <strong>Medium Cleaning</strong>.</li>
-      <li>Αφήνουμε ενεργή μόνο την κεφαλή <strong>Α</strong>, δηλαδή λευκό και gloss.</li>
-      <li>Απενεργοποιούμε την κεφαλή <strong>Β</strong>, δηλαδή CMYK, για να μη σπαταληθεί έγχρωμο μελάνι.</li>
-      <li>Πατάμε <strong>Enter</strong>.</li>
-      <li>Μετά κάνουμε ξανά <strong>Test Print</strong>.</li>
-    </ol>
-
-    <h3>6. Head Refresh</h3>
-    <table>
-      <thead>
+      <h3>1. Head Refresh</h3>
+      <table>
         <tr>
           <th>Βήμα</th>
           <th>Ενέργεια</th>
         </tr>
-      </thead>
-      <tbody>
-        <tr><td>1</td><td>Όταν εμφανιστεί <strong>DO HEAD REFRESH</strong>, πατάμε <strong>ENTER</strong> και επιλέγουμε <strong>YES</strong>.</td></tr>
-        <tr><td>2</td><td>Το μηχάνημα δείχνει <strong>SET HEAD REFRESHER</strong>.</td></tr>
-        <tr><td>3</td><td>Βάζουμε τα ειδικά μαντηλάκια στο εξάρτημα head refresher.</td></tr>
-        <tr><td>4</td><td>Τοποθετούμε το εξάρτημα σωστά και πατάμε <strong>ENTER</strong>.</td></tr>
-        <tr><td>5</td><td>Όταν εμφανιστεί <strong>APPLY CL LIQUID START REFRESH</strong>, ρίχνουμε CL υγρό στο μαντηλάκι.</td></tr>
-        <tr><td>6</td><td>Κλείνουμε το καπάκι και πατάμε <strong>ENTER</strong>.</td></tr>
-        <tr><td>7</td><td>Όταν εμφανιστεί <strong>REMOVE HEAD REFRESHER</strong>, αφαιρούμε το εξάρτημα.</td></tr>
-        <tr><td>8</td><td>Πετάμε το χρησιμοποιημένο μαντηλάκι, κλείνουμε το καπάκι και πατάμε <strong>ENTER</strong>.</td></tr>
-      </tbody>
-    </table>
+        <tr>
+          <td>1</td>
+          <td>Όταν εμφανιστεί <strong>DO HEAD REFRESH</strong>, πατάμε <strong>ENTER</strong> και επιλέγουμε <strong>YES</strong>.</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Όταν εμφανιστεί <strong>SET HEAD REFRESHER</strong>, ετοιμάζουμε το εξάρτημα.</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Βάζουμε τα ειδικά μαντηλάκια μέσα στο εξάρτημα.</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Τοποθετούμε το εξάρτημα σωστά στο μηχάνημα και πατάμε <strong>ENTER</strong>.</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Όταν εμφανιστεί <strong>APPLY CL LIQUID START REFRESH</strong>, ρίχνουμε ειδικό υγρό καθαρισμού CL στο μαντηλάκι.</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Κλείνουμε το καπάκι και πατάμε <strong>ENTER</strong>.</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Όταν εμφανιστεί <strong>REMOVE HEAD REFRESHER</strong>, αφαιρούμε το εξάρτημα.</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Πετάμε το χρησιμοποιημένο μαντηλάκι, κλείνουμε το καπάκι και πατάμε <strong>ENTER</strong>.</td>
+        </tr>
+      </table>
 
-    <h3>7. Εβδομαδιαίος χειροκίνητος καθαρισμός</h3>
-    <ol>
-      <li>Χρησιμοποιούμε cleaning liquid ESL-5, δοσομετρητή και καθαρή μπατονέτα.</li>
-      <li>Φοράμε γάντια γιατί το υγρό είναι καυστικό.</li>
-      <li>Μπαίνουμε από <strong>Menu > Sub Menu > Maintenance > Cleaning</strong>.</li>
-      <li>Η κεφαλή πηγαίνει αριστερά για να έχουμε πρόσβαση.</li>
-      <li>Καθαρίζουμε γύρω γύρω από κάθε κεφαλή.</li>
-      <li>Δεν ακουμπάμε τα ακροφύσια από κάτω.</li>
-      <li>Καθαρίζουμε τα τρία καπάκια δεξιά.</li>
-      <li>Καθαρίζουμε τα wipers.</li>
-      <li>Κλείνουμε το καπάκι και πατάμε <strong>Enter</strong> όταν εμφανιστεί <strong>FINISHED</strong>.</li>
-    </ol>
+      <div class="danger">
+        <strong>Προσοχή:</strong><br>
+        Το χρησιμοποιημένο μαντηλάκι έχει μελάνι. Δεν το ξαναχρησιμοποιούμε.
+      </div>
 
-    <div class="danger">
-      <strong>Προσοχή:</strong><br>
-      Δεν καθαρίζουμε ποτέ από κάτω την κεφαλή στα ακροφύσια. Καθαρίζουμε μόνο γύρω γύρω.
+      <h3>2. Καθαρισμός με μπατονέτα</h3>
+      <ol>
+        <li>Φοράμε γάντια.</li>
+        <li>Χρησιμοποιούμε ειδική μπατονέτα και cleaning liquid.</li>
+        <li>Μπαίνουμε από <strong>Menu > Sub Menu > Maintenance > Cleaning</strong>.</li>
+        <li>Περιμένουμε να μετακινηθεί η κεφαλή στη σωστή θέση.</li>
+        <li>Καθαρίζουμε προσεκτικά γύρω από την κεφαλή.</li>
+        <li>Καθαρίζουμε τα καπάκια και τα wipers.</li>
+        <li>Κλείνουμε το καπάκι.</li>
+        <li>Πατάμε <strong>ENTER</strong> όταν εμφανιστεί <strong>FINISHED</strong>.</li>
+      </ol>
+
+      <div class="danger">
+        <strong>Προσοχή:</strong><br>
+        Δεν ακουμπάμε ποτέ τα ακροφύσια της κεφαλής από κάτω. Καθαρίζουμε μόνο γύρω-γύρω.
+      </div>
     </div>
 
-    <h3>8. Drain Bottle</h3>
-    <p>
-      Το δοχείο απόρριψης μαζεύει το μελάνι από τους καθαρισμούς.
-      Το ελέγχουμε χειροκίνητα, γιατί δεν υπάρχει πάντα αυτόματη ένδειξη γεμίσματος.
-    </p>
+    <div id="roland-height" class="subtab-content">
+      <h3>Ύψος Τραπεζιού / Auto Detection</h3>
 
-    <h3>9. Εκτύπωση σε μάρμαρο / υλικό</h3>
-    <ol>
-      <li>Ελέγχουμε ότι η οθόνη είναι καθαρή και έτοιμη.</li>
-      <li>Κάνουμε πρώτη ρύθμιση ύψους με <strong>Auto Detection</strong> για το γυμνό τραπέζι.</li>
-      <li>Στο VersaWorks, από την καρτέλα <strong>Δείγματα</strong>, επιλέγουμε το αρχείο με τα μέτρα.</li>
-      <li>Πατάμε <strong>Print</strong> για να τυπωθούν οι οδηγοί.</li>
-      <li>Όταν εμφανιστεί <strong>FINISHED PRINT</strong>, πατάμε <strong>ENTER</strong>.</li>
-      <li>Τοποθετούμε το υλικό επάνω στους οδηγούς, ξεκινώντας από την κάτω δεξιά γωνία.</li>
-      <li>Κάνουμε δεύτερη ρύθμιση ύψους πάνω από το υλικό.</li>
-      <li>Στο VersaWorks, από την καρτέλα <strong>Δουλειές</strong>, επιλέγουμε το τελικό αρχείο και πατάμε <strong>Print</strong>.</li>
-    </ol>
-  </section>
+      <p>
+        Η ρύθμιση ύψους είναι απαραίτητη για να μη χτυπήσει η κεφαλή επάνω στο υλικό και για να γίνει σωστή εκτύπωση.
+      </p>
 
-  <!-- QUICK CHECK -->
-  <section id="quick" class="tab-content">
-    <span class="badge">Γενικός έλεγχος</span>
-    <h2>Γρήγορος Έλεγχος Ανά Μηχάνημα</h2>
+      <ol>
+        <li>Τοποθετούμε το υλικό στο τραπέζι.</li>
+        <li>Βεβαιωνόμαστε ότι το υλικό είναι σταθερό.</li>
+        <li>Εκτελούμε τη διαδικασία <strong>Auto Detection</strong>.</li>
+        <li>Περιμένουμε να ολοκληρωθεί η ανίχνευση.</li>
+        <li>Συνεχίζουμε μόνο όταν το μηχάνημα είναι έτοιμο.</li>
+      </ol>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Μηχάνημα</th>
-          <th>Πριν ξεκινήσεις</th>
-          <th>Τι μπορεί να πάει στραβά</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Laser</td>
-          <td>Έλεγξε κόκκινο contour, hairline, mirror και σελίδα 60 x 40 cm.</td>
-          <td>Μπορεί να γίνει χάραξη αντί για κοπή ή να κοπεί λάθος πλευρά.</td>
-        </tr>
-        <tr>
-          <td>Vulcan</td>
-          <td>Έλεγξε registration marks, origin, vacuum και test cut.</td>
-          <td>Μπορεί να κόψει στραβά ή με λάθος δύναμη.</td>
-        </tr>
-        <tr>
-          <td>Roland UV</td>
-          <td>Ανακίνησε μελάνια, κάνε test print, έλεγξε ύψος και καθαριότητα.</td>
-          <td>Μπορεί να εμφανιστούν γραμμές, κενά ή πρόβλημα στην κεφαλή.</td>
-        </tr>
-      </tbody>
-    </table>
+      <div class="danger">
+        <strong>Προσοχή:</strong><br>
+        Αν το ύψος δεν έχει ρυθμιστεί σωστά, υπάρχει κίνδυνος να ακουμπήσει η κεφαλή στο υλικό.
+      </div>
+    </div>
 
-    <div class="success">
-      <strong>Κανόνας ασφαλείας:</strong><br>
-      Αν κάτι δεν φαίνεται σωστό, σταματάμε και κάνουμε δοκιμή. Καλύτερα ένα test πριν,
-      παρά χαλασμένο υλικό μετά.
+    <div id="roland-print" class="subtab-content">
+      <h3>Εκτύπωση</h3>
+
+      <div class="info">
+        <strong>Βασική λογική:</strong><br>
+        Πρώτα τυπώνουμε οδηγούς στο τραπέζι, μετά τοποθετούμε το υλικό επάνω στους οδηγούς, ξαναρυθμίζουμε το ύψος και μετά τυπώνουμε το τελικό αρχείο.
+      </div>
+
+      <ol>
+        <li>Ελέγχουμε ότι η οθόνη είναι καθαρή και έτοιμη.</li>
+        <li>Κάνουμε πρώτη ρύθμιση ύψους για το γυμνό τραπέζι.</li>
+        <li>Στο VersaWorks, από την καρτέλα <strong>Δείγματα</strong>, επιλέγουμε το αρχείο με τα μέτρα.</li>
+        <li>Πατάμε <strong>Print</strong> για να τυπωθούν οι οδηγοί.</li>
+        <li>Όταν εμφανιστεί <strong>FINISHED PRINT</strong>, πατάμε <strong>ENTER</strong>.</li>
+        <li>Τοποθετούμε το υλικό με ακρίβεια επάνω στις γραμμές.</li>
+        <li>Ξεκινάμε αυστηρά από την <strong>κάτω δεξιά γωνία</strong>.</li>
+        <li>Κάνουμε δεύτερη ρύθμιση ύψους πάνω από το υλικό.</li>
+        <li>Στο VersaWorks, από την καρτέλα <strong>Δουλειές</strong>, επιλέγουμε το τελικό αρχείο.</li>
+        <li>Πατάμε <strong>Print</strong>.</li>
+      </ol>
+    </div>
+
+    <div id="roland-trouble" class="subtab-content">
+      <h3>Troubleshooting Roland UV Printer</h3>
+
+      <table>
+        <tr>
+          <th>Πρόβλημα</th>
+          <th>Πιθανή αιτία</th>
+          <th>Τι κάνω</th>
+        </tr>
+        <tr>
+          <td>Βγαίνουν γραμμές στην εκτύπωση</td>
+          <td>Σκόνη, χνούδια ή πρόβλημα στην κεφαλή</td>
+          <td>Κάνω test print και καθαρισμό.</td>
+        </tr>
+        <tr>
+          <td>Δεν τυπώνει καλά το λευκό</td>
+          <td>Το λευκό έμεινε στάσιμο</td>
+          <td>Κάνω καθαρισμό και μικρή εκτύπωση με λευκό.</td>
+        </tr>
+        <tr>
+          <td>Η εκτύπωση βγήκε στραβά</td>
+          <td>Λάθος τοποθέτηση υλικού</td>
+          <td>Ελέγχω τους οδηγούς και ξεκινώ από κάτω δεξιά.</td>
+        </tr>
+        <tr>
+          <td>Κίνδυνος να χτυπήσει η κεφαλή</td>
+          <td>Λάθος ύψος τραπεζιού</td>
+          <td>Σταματώ και κάνω ξανά Auto Detection.</td>
+        </tr>
+      </table>
     </div>
   </section>
 
 </div>
 
 <footer>
-  Οδηγός εργαστηρίου - Έκδοση HTML με ξεχωριστές καρτέλες ανά μηχάνημα
+  Οδηγός εργαστηρίου - HTML έκδοση με καρτέλες ανά μηχάνημα και ανά διαδικασία
 </footer>
 
 <script>
-  function openTab(event, tabName) {
+  function openMainTab(event, tabName) {
     var i;
     var tabContents = document.getElementsByClassName("tab-content");
     var tabButtons = document.getElementsByClassName("tab-button");
@@ -522,6 +562,23 @@
 
     for (i = 0; i < tabButtons.length; i++) {
       tabButtons[i].classList.remove("active");
+    }
+
+    document.getElementById(tabName).classList.add("active");
+    event.currentTarget.classList.add("active");
+  }
+
+  function openSubTab(event, tabName) {
+    var parentSection = event.currentTarget.closest(".tab-content");
+    var subContents = parentSection.getElementsByClassName("subtab-content");
+    var subButtons = parentSection.getElementsByClassName("subtab-button");
+
+    for (var i = 0; i < subContents.length; i++) {
+      subContents[i].classList.remove("active");
+    }
+
+    for (var j = 0; j < subButtons.length; j++) {
+      subButtons[j].classList.remove("active");
     }
 
     document.getElementById(tabName).classList.add("active");

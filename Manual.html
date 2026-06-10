@@ -622,7 +622,7 @@
         </tr>
       </table>
     </div>
-  </section>
+  <section>
 
 </div>
 
@@ -631,4 +631,49 @@
 </footer>
 
 <script>
-  
+  function openMainTab(event, tabName) {
+    var tabContents = document.getElementsByClassName("tab-content");
+    var tabButtons = document.getElementsByClassName("tab-button");
+
+    for (var i = 0; i < tabContents.length; i++) {
+      tabContents[i].classList.remove("active");
+    }
+
+    for (var j = 0; j < tabButtons.length; j++) {
+      tabButtons[j].classList.remove("active");
+    }
+
+    document.getElementById(tabName).classList.add("active");
+    event.currentTarget.classList.add("active");
+  }
+
+  function openSubTab(event, tabName) {
+    var parentSection = event.currentTarget.closest(".tab-content");
+    var subContents = parentSection.getElementsByClassName("subtab-content");
+    var subButtons = parentSection.getElementsByClassName("subtab-button");
+
+    for (var i = 0; i < subContents.length; i++) {
+      subContents[i].classList.remove("active");
+    }
+
+    for (var j = 0; j < subButtons.length; j++) {
+      subButtons[j].classList.remove("active");
+    }
+
+    document.getElementById(tabName).classList.add("active");
+    event.currentTarget.classList.add("active");
+  }
+
+  function toggleGuide(id) {
+    var box = document.getElementById(id);
+
+    if (box.style.display === "block") {
+      box.style.display = "none";
+    } else {
+      box.style.display = "block";
+    }
+  }
+</script>
+
+</body>
+</html>

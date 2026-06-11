@@ -1,660 +1,694 @@
 <!DOCTYPE html>
 <html lang="el">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Οδηγός Λειτουργίας & Συντήρησης Εργαστηρίου Biniatian</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Οδηγός Λειτουργίας & Συντήρησης Εργαστηρίου Biniatian</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f4f6f8;
-      color: #222;
-      line-height: 1.6;
-    }
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+            line-height: 1.6;
+        }
 
-    header {
-      background: linear-gradient(135deg, #1f2937, #374151);
-      color: white;
-      padding: 30px 20px;
-      text-align: center;
-    }
+        header {
+            background: linear-gradient(135deg, #1f2937, #374151);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
 
-    header h1 {
-      margin: 0;
-      font-size: 30px;
-    }
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
 
-    header p {
-      margin-top: 10px;
-      font-size: 16px;
-      color: #d1d5db;
-    }
+        header p {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #d1d5db;
+        }
 
-    .container {
-      max-width: 1150px;
-      margin: 25px auto;
-      padding: 0 15px;
-    }
+        .container {
+            max-width: 1150px;
+            margin: 25px auto;
+            padding: 0 15px;
+        }
 
-    .tabs, .subtabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
+        .tabs,
+        .subtabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
 
-    .tab-button, .subtab-button {
-      border: none;
-      background: #e5e7eb;
-      padding: 12px 18px;
-      cursor: pointer;
-      border-radius: 10px;
-      font-size: 15px;
-      font-weight: bold;
-      transition: 0.2s;
-    }
+        .tab-button,
+        .subtab-button {
+            border: none;
+            background: #e5e7eb;
+            padding: 12px 18px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
 
-    .tab-button:hover, .subtab-button:hover {
-      background: #d1d5db;
-    }
+        .tab-button:hover,
+        .subtab-button:hover {
+            background: #d1d5db;
+        }
 
-    .tab-content, .subtab-content {
-      display: none;
-      background: white;
-      padding: 25px;
-      border-radius: 14px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-      margin-bottom: 30px;
-    }
+        .tab-content,
+        .subtab-content {
+            display: none;
+            background: white;
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+        }
 
-    .tab-content.active, .subtab-content.active {
-      display: block;
-    }
+        .tab-content.active,
+        .subtab-content.active {
+            display: block;
+        }
 
-    h2 {
-      color: #1f2937;
-      border-bottom: 3px solid #2563eb;
-      padding-bottom: 8px;
-      margin-top: 0;
-    }
+        h2 {
+            color: #1f2937;
+            border-bottom: 3px solid #2563eb;
+            padding-bottom: 8px;
+            margin-top: 0;
+        }
 
-    h3 {
-      color: #374151;
-      margin-top: 28px;
-    }
+        h3 {
+            color: #374151;
+            margin-top: 28px;
+        }
 
-    .info {
-      background: #eff6ff;
-      border-left: 5px solid #2563eb;
-      padding: 15px;
-      border-radius: 8px;
-      margin: 18px 0;
-    }
+        .info {
+            background: #eff6ff;
+            border-left: 5px solid #2563eb;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 18px 0;
+        }
 
-    .notice {
-      background: #fff7ed;
-      border-left: 5px solid #f97316;
-      padding: 15px;
-      border-radius: 8px;
-      margin: 18px 0;
-    }
+        .notice {
+            background: #fff7ed;
+            border-left: 5px solid #f97316;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 18px 0;
+        }
 
-    .success {
-      background: #ecfdf5;
-      border-left: 5px solid #10b981;
-      padding: 15px;
-      border-radius: 8px;
-      margin: 18px 0;
-    }
+        .success {
+            background: #ecfdf5;
+            border-left: 5px solid #10b981;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 18px 0;
+        }
 
-    .danger {
-      background: #fef2f2;
-      border-left: 5px solid #ef4444;
-      padding: 15px;
-      border-radius: 8px;
-      margin: 18px 0;
-    }
+        .danger {
+            background: #fef2f2;
+            border-left: 5px solid #ef4444;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 18px 0;
+        }
 
-    ul, ol {
-      padding-left: 23px;
-    }
+        ul,
+        ol {
+            padding-left: 23px;
+        }
 
-    li {
-      margin-bottom: 8px;
-    }
+        li {
+            margin-bottom: 8px;
+        }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-      font-size: 15px;
-    }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 15px;
+        }
 
-    th {
-      background: #1f2937;
-      color: white;
-      text-align: left;
-      padding: 12px;
-    }
+        th {
+            background: #1f2937;
+            color: white;
+            text-align: left;
+            padding: 12px;
+        }
 
-    td {
-      border: 1px solid #e5e7eb;
-      padding: 12px;
-      vertical-align: top;
-    }
+        td {
+            border: 1px solid #e5e7eb;
+            padding: 12px;
+            vertical-align: top;
+        }
 
-    tr:nth-child(even) {
-      background: #f9fafb;
-    }
+        tr:nth-child(even) {
+            background: #f9fafb;
+        }
 
-    .checklist label {
-      display: block;
-      background: #f9fafb;
-      padding: 10px;
-      margin-bottom: 8px;
-      border-radius: 8px;
-      border: 1px solid #e5e7eb;
-    }
+        .checklist label {
+            display: block;
+            background: #f9fafb;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
 
-    .badge {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
 
-    .laser-tab.active, .laser-sub.active {
-      background: #dc2626;
-      color: white;
-    }
+        .laser-tab.active,
+        .laser-sub.active {
+            background: #dc2626;
+            color: white;
+        }
 
-    .vulcan-tab.active, .vulcan-sub.active {
-      background: #16a34a;
-      color: white;
-    }
+        .vulcan-tab.active,
+        .vulcan-sub.active {
+            background: #16a34a;
+            color: white;
+        }
 
-    .roland-tab.active, .roland-sub.active {
-      background: #2563eb;
-      color: white;
-    }
+        .roland-tab.active,
+        .roland-sub.active {
+            background: #2563eb;
+            color: white;
+        }
 
-    #roland h2 { border-bottom-color: #2563eb; }
-    #laser h2 { border-bottom-color: #dc2626; }
-    #vulcan h2 { border-bottom-color: #16a34a; }
-    
+        #roland h2 {
+            border-bottom-color: #2563eb;
+        }
 
-    #roland .badge {
-      background: #dbeafe;
-      color: #1d4ed8;
-    }
-    
-    #laser .badge {
-      background: #fee2e2;
-      color: #991b1b;
-    }
+        #laser h2 {
+            border-bottom-color: #dc2626;
+        }
 
-    #vulcan .badge {
-      background: #dcfce7;
-      color: #166534;
-    }
+        #vulcan h2 {
+            border-bottom-color: #16a34a;
+        }
 
-    
 
-    .step-btn {
-      background: #2563eb;
-      color: white;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 15px;
-    }
+        #roland .badge {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
 
-    .step-btn:hover {
-      background: #1d4ed8;
-    }
+        #laser .badge {
+            background: #fee2e2;
+            color: #991b1b;
+        }
 
-    .guide-box {
-      display: none;
-      margin-top: 12px;
-      padding: 15px;
-      background: #eff6ff;
-      border-left: 5px solid #2563eb;
-      border-radius: 8px;
-    }
+        #vulcan .badge {
+            background: #dcfce7;
+            color: #166534;
+        }
 
-    footer {
-      text-align: center;
-      color: #6b7280;
-      padding: 25px;
-      font-size: 14px;
-    }
 
-    @media print {
-      .tabs, .subtabs {
-        display: none;
-      }
 
-      .tab-content, .subtab-content, .guide-box {
-        display: block !important;
-        box-shadow: none;
-        page-break-after: always;
-      }
+        .step-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 15px;
+        }
 
-      body {
-        background: white;
-      }
-    }
-  </style>
+        .step-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .guide-box {
+            display: none;
+            margin-top: 12px;
+            padding: 15px;
+            background: #eff6ff;
+            border-left: 5px solid #2563eb;
+            border-radius: 8px;
+        }
+
+        footer {
+            text-align: center;
+            color: #6b7280;
+            padding: 25px;
+            font-size: 14px;
+        }
+
+        @media print {
+
+            .tabs,
+            .subtabs {
+                display: none;
+            }
+
+            .tab-content,
+            .subtab-content,
+            .guide-box {
+                display: block !important;
+                box-shadow: none;
+                page-break-after: always;
+            }
+
+            body {
+                background: white;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<header>
-  <h1>Οδηγός Λειτουργίας & Συντήρησης Εργαστηρίου</h1>
-  <p>Χωρισμένος ανά μηχάνημα και ανά διαδικασία, ώστε να τον χρησιμοποιεί και αρχάριος</p>
-</header>
+    <header>
+        <h1>Οδηγός Λειτουργίας & Συντήρησης Εργαστηρίου</h1>
+        <p>Χωρισμένος ανά μηχάνημα και ανά διαδικασία, ώστε να τον χρησιμοποιεί και αρχάριος</p>
+    </header>
 
-<div class="container">
+    <div class="container">
 
-  <div class="tabs"> 
-  
-   <button class="tab-button roland-tab" onclick="openMainTab(event, 'roland')">Roland UV Printer</button>
-    <button class="tab-button laser-tab active" onclick="openMainTab(event, 'laser')">Laser</button>
-    <button class="tab-button vulcan-tab" onclick="openMainTab(event, 'vulcan')">Vulcan Cutter</button>
-    
-  </div>
+        <div class="tabs">
 
-  <section id="laser" class="tab-content active">
-    <span class="badge">Universal Laser Systems</span>
-    <h2>Σύστημα Κοπής Laser</h2>
+            <button class="tab-button roland-tab" onclick="openMainTab(event, 'roland')">Roland UV Printer</button>
+            <button class="tab-button laser-tab active" onclick="openMainTab(event, 'laser')">Laser</button>
+            <button class="tab-button vulcan-tab" onclick="openMainTab(event, 'vulcan')">Vulcan Cutter</button>
 
-    <div class="subtabs">
-      <button class="subtab-button laser-sub active" onclick="openSubTab(event, 'laser-basic')">Βασικά</button>
-      <button class="subtab-button laser-sub" onclick="openSubTab(event, 'laser-file')">Αρχείο Κοπής</button>
-      <button class="subtab-button laser-sub" onclick="openSubTab(event, 'laser-trouble')">Troubleshooting</button>
-    </div>
+        </div>
 
-    <div id="laser-basic" class="subtab-content active">
-      <h3>Τι κάνει το Laser</h3>
-      <p>Κόβει ή χαράζει υλικά, όπως plexiglass, με βάση το αρχείο που ετοιμάζεται στον υπολογιστή.</p>
+        <section id="laser" class="tab-content active">
+            <span class="badge">Universal Laser Systems</span>
+            <h2>Σύστημα Κοπής Laser</h2>
 
-      <div class="info">
-        <strong>Βασικός στόχος:</strong><br>
-        Να είναι σωστό το αρχείο πριν σταλεί στο μηχάνημα, γιατί το Laser ακολουθεί ακριβώς τις γραμμές που του δίνουμε.
-      </div>
-    </div>
-
-    <div id="laser-file" class="subtab-content">
-      <h3>Προετοιμασία αρχείου κοπής</h3>
-      <ul>
-        <li>Φτιάχνουμε το τελικό περίγραμμα κοπής.</li>
-        <li>Το περίγραμμα πρέπει να είναι <strong>κόκκινο</strong>.</li>
-        <li>Το πάχος της γραμμής πρέπει να είναι <strong>hairline</strong>.</li>
-        <li>Ορίζουμε σελίδα εργασίας <strong>60 x 40 cm</strong>.</li>
-        <li>Κάνουμε <strong>mirror / καθρεπτισμό</strong> πριν την κοπή.</li>
-      </ul>
-
-      <div class="danger">
-        <strong>Προσοχή:</strong><br>
-        Αν η γραμμή δεν είναι hairline, μπορεί να γίνει χάραξη αντί για κοπή.
-      </div>
-    </div>
-
-    <div id="laser-trouble" class="subtab-content">
-      <h3>Troubleshooting Laser</h3>
-      <table>
-        <tr>
-          <th>Πρόβλημα</th>
-          <th>Πιθανή αιτία</th>
-          <th>Τι κάνω</th>
-        </tr>
-        <tr>
-          <td>Δεν κόβει σωστά</td>
-          <td>Λάθος πάχος γραμμής ή ρύθμιση υλικού</td>
-          <td>Ελέγχω hairline, υλικό και ρυθμίσεις ισχύος.</td>
-        </tr>
-        <tr>
-          <td>Κόβει από λάθος πλευρά</td>
-          <td>Δεν έγινε mirror</td>
-          <td>Επιστρέφω στο αρχείο και κάνω καθρεπτισμό.</td>
-        </tr>
-      </table>
-    </div>
-  </section>
-
-  <section id="vulcan" class="tab-content">
-    <span class="badge">Vulcan FC 500 VC</span>
-    
-
-    <div class="subtabs">
-      <button class="subtab-button vulcan-sub active" onclick="openSubTab(event, 'vulcan-basic')">Βασικά</button>
-      <button class="subtab-button vulcan-sub" onclick="openSubTab(event, 'vulcan-cut')">Διαδικασία Κοπής</button>
-      <button class="subtab-button vulcan-sub" onclick="openSubTab(event, 'vulcan-trouble')">Troubleshooting</button>
-    </div>
-
-    <div id="vulcan-basic" class="subtab-content active">
-      <h3>Τι κάνει το Vulcan</h3>
-      <p>Κόβει εκτυπωμένα αυτοκόλλητα ή χαρτιά με βάση σημάδια αναγνώρισης.</p>
-
-      <div class="info">
-        <strong>Βασικός στόχος:</strong><br>
-        Να διαβάσει σωστά τα registration marks και να κόψει ακριβώς γύρω από το σχέδιο.
-      </div>
-    </div>
-
-    <div id="vulcan-cut" class="subtab-content">
-      <h3>Διαδικασία κοπής</h3>
-      <ol>
-        <li>Ανοίγω το <strong>CorelDRAW 2017</strong>.</li>
-        <li>Εισάγω το αρχείο.</li>
-        <li>Δημιουργώ νέα σελίδα στις πραγματικές διαστάσεις του χαρτιού.</li>
-        <li>Επιλέγω <strong>Create Registration Marks</strong>.</li>
-        <li>Στέλνω στο <strong>SignCut Pro 2</strong>.</li>
-        <li>Τοποθετώ το χαρτί στο Vulcan.</li>
-        <li>Ορίζω <strong>Origin</strong>.</li>
-        <li>Ενεργοποιώ <strong>Vacuum</strong>.</li>
-        <li>Κάνω <strong>Test Cut</strong> αν δεν είμαι σίγουρος.</li>
-        <li>Πατάω <strong>Cut Out</strong>.</li>
-      </ol>
-
-      <table>
-        <tr>
-          <th>Υλικό</th>
-          <th>Tool Force</th>
-          <th>Tool Speed</th>
-        </tr>
-        <tr>
-          <td>Αυτοκόλλητο / Sticker / Vinyl</td>
-          <td>80</td>
-          <td>700</td>
-        </tr>
-      </table>
-    </div>
-
-    <div id="vulcan-trouble" class="subtab-content">
-      <h3>Troubleshooting Vulcan</h3>
-      <table>
-        <tr>
-          <th>Πρόβλημα</th>
-          <th>Πιθανή αιτία</th>
-          <th>Τι κάνω</th>
-        </tr>
-        <tr>
-          <td>Κόβει στραβά</td>
-          <td>Λάθος origin ή κακή ευθυγράμμιση φύλλου</td>
-          <td>Ξαναβάζω το φύλλο ίσια και ορίζω ξανά origin.</td>
-        </tr>
-        <tr>
-          <td>Δεν κόβει αρκετά</td>
-          <td>Χαμηλή δύναμη μαχαιριού</td>
-          <td>Κάνω test cut και αυξάνω σταδιακά το force.</td>
-        </tr>
-      </table>
-    </div>
-  </section>
-
-  <section id="roland" class="tab-content">
-    <span class="badge">Roland VersaUV LEF2-200</span>
-    <h2>Roland UV Printer</h2>
-
-    <div class="subtabs">
-      <button class="subtab-button roland-sub active" onclick="openSubTab(event, 'roland-daily')">Καθημερινός Έλεγχος</button>
-      <button class="subtab-button roland-sub" onclick="openSubTab(event, 'roland-cleaning')">Καθαρισμοί</button>
-      <button class="subtab-button roland-sub" onclick="openSubTab(event, 'roland-height')">Ύψος Τραπεζιού</button>
-      <button class="subtab-button roland-sub" onclick="openSubTab(event, 'roland-print')">Εκτύπωση</button>
-      <button class="subtab-button roland-sub" onclick="openSubTab(event, 'roland-trouble')">Troubleshooting</button>
-    </div>
-
-    <div id="roland-daily" class="subtab-content active">
-      <h3>Καθημερινός Έλεγχος</h3>
-
-      <div class="checklist">
-         <li> Ανακινώ καλά τα δοχεία μελανιού.</li>
-         <li> Ανοίγω τον εκτυπωτή και περιμένω να είναι έτοιμος.</li>
-         <li>Κάνω πάντα Test Print.</li>
-         <li> Ελέγχω αν υπάρχουν γραμμές ή κενά στην εκτύπωση.</li>
-         <li> Ελέγχω ότι το τραπέζι και το υλικό είναι καθαρά.</li>
-      </div>
-
-      <div class="notice">
-        <strong>Λευκό μελάνι:</strong><br>
-        Καλό είναι να χρησιμοποιείται συχνά. Αν μείνει στάσιμο, μπορεί να θολώσει η κεφαλή και να χρειαστούν πολλοί καθαρισμοί.
-      </div>
-    </div>
-
-    <div id="roland-cleaning" class="subtab-content">
-      <h3>Καθαρισμοί</h3>
-
-      <h2>1. Head Refresh</h2>
-      
-    <ol>
-        <li>Όταν εμφανιστεί <strong>DO HEAD REFRESH</strong>, πατάμε <strong>ENTER</strong> και επιλέγουμε <strong>YES</strong>.</li>
-        <li>Όταν εμφανιστεί <strong>SET HEAD REFRESHER</strong>, ετοιμάζουμε το εξάρτημα.</li>
-        <li>Βάζουμε τα ειδικά μαντηλάκια μέσα στο εξάρτημα.</li>
-        <li>Τοποθετούμε το εξάρτημα σωστά στο μηχάνημα και πατάμε <strong>ENTER</strong>.</li>
-        <li>Όταν εμφανιστεί <strong>APPLY CL LIQUID START REFRESH</strong>, ρίχνουμε ειδικό υγρό καθαρισμού CL στο μαντηλάκι.</li>
-        <li> Κλείνουμε το καπάκι και πατάμε <strong>ENTER</strong>. </li>
-        <li>Όταν εμφανιστεί <strong>REMOVE HEAD REFRESHER</strong>, αφαιρούμε το εξάρτημα.</li>
-        <li>Πετάμε το χρησιμοποιημένο μαντηλάκι, κλείνουμε το καπάκι και πατάμε <strong>ENTER</li>
-       
-    </ol>
-      
-
-      <div class="danger">
-        <strong>Προσοχή:</strong><br>
-        Το χρησιμοποιημένο μαντηλάκι έχει μελάνι. Δεν το ξαναχρησιμοποιούμε.
-      </div>
-
-      <h3>2. Καθαρισμός με μπατονέτα (Μια φορά την εβδομάδα)</h3>
-      <ol>
-        <li>Φοράμε γάντια.</li>
-        <li>Χρησιμοποιούμε ειδική μπατονέτα και cleaning liquid.</li>
-        <li>Μπαίνουμε από <strong>Menu > Sub Menu > Maintenance > Cleaning</strong>.</li>
-        <li>Περιμένουμε να μετακινηθεί η κεφαλή στη σωστή θέση. </li>
-        <li>Καθαρίζουμε προσεκτικά γύρω από την κεφαλή.</li>
-        <li>Καθαρίζουμε τα καπάκια και τα wipers.</li>
-        <li>Κλείνουμε το καπάκι.</li>
-        <li>Πατάμε <strong>ENTER</strong> όταν εμφανιστεί <strong>FINISHED</strong>.</li>
-      </ol>
-
-      <div class="danger">
-        <strong>Προσοχή:</strong><br>
-        Δεν ακουμπάμε ποτέ τα ακροφύσια της κεφαλής από κάτω. Καθαρίζουμε μόνο γύρω-γύρω.
-      </div>
-    </div>
-
-    <div id="roland-height" class="subtab-content">
-      <h3>Ύψος Τραπεζιού</h3>
-
-      <p>
-        Η ρύθμιση ύψους είναι απαραίτητη για να μη χτυπήσει η κεφαλή επάνω στο υλικό και για να γίνει σωστή εκτύπωση.
-      </p>
-
-      <ol>
-        <li>Τοποθετούμε το υλικό στο τραπέζι, εκτός αν θέλουμε να τυπώσουμε κατευθείαν πάνω στο χαρτί.</li>
-        <li>Βεβαιωνόμαστε ότι το υλικό είναι σταθερό.</li>
-        <li>Πατάμε το κουμπί <strong>SETUP</strong> συνεχόμενα.</li>
-        <li>Βάζουμε μέσα το τραπέζι με το <strong>πάνω βελάκι</strong> μέχρι να έρθει το υλικό κάτω από τον αισθητήρα ύψους. Μπορεί να χρειαστεί να κατέβει λίγο το τραπέζι με το κουμπί <strong>DOWN</strong>.</li>
-        <li>Ανεβάζουμε το τραπέζι με το κουμπί <strong>UP</strong> μέχρι να σταματήσει.</li>
-        <li>Πατάμε το δεξί βελάκι και όταν η οθόνη εμφανίσει <strong>AUTO DETECTION</strong>, πατάμε <strong>ENTER</strong>.</li>
-        <li>Αφού βρει αυτόματα το ύψος του τραπεζιού, το κατεβάζουμε λίγο χειροκίνητα για περισσότερη ασφάλεια.</li>
-        <li>Πατάμε το κουμπί <strong>SETUP</strong> συνεχόμενα.</li>
-        <li>Όταν η οθόνη γράψει πάλι <strong>SETUP MEDIA</strong>, πατάμε το κουμπί <strong>SETUP</strong>.</li>
-        <li>Πατάμε το κουμπί <strong>DOWN</strong> 3-4 φορές για να κατέβει λίγο το τραπέζι.</li>
-        <li>Πατάμε <strong>ENTER</strong>.</li>
-      </ol>
-
-      <div class="danger">
-        <strong>Προσοχή:</strong><br>
-        Αν το ύψος δεν έχει ρυθμιστεί σωστά, υπάρχει κίνδυνος να ακουμπήσει και να καταστραφεί η κεφαλή.
-      </div>
-    </div>
-
-    <div id="roland-print" class="subtab-content">
-      <h3>Εκτύπωση</h3>
-
-      <div class="info">
-        <strong>Βασική λογική:</strong><br>
-        Πρώτα τυπώνουμε οδηγούς στο τραπέζι, μετά τοποθετούμε το υλικό επάνω στους οδηγούς, ξαναρυθμίζουμε το ύψος και μετά τυπώνουμε το τελικό αρχείο.
-      </div>
-
-      <ol>
-        <li>
-          <button class="step-btn" onclick="toggleGuide('height-guide-1')">
-            Ρυθμίζουμε το ύψος του τραπεζιού
-          </button>
-
-          <div id="height-guide-1" class="guide-box">
-            <h4>Διαδικασία ρύθμισης ύψους τραπεζιού</h4>
-            <ol>
-              <li>Τοποθετούμε το υλικό στο τραπέζι, εκτός αν θέλουμε να τυπώσουμε κατευθείαν πάνω στο χαρτί.</li>
-              <li>Βεβαιωνόμαστε ότι το υλικό είναι σταθερό.</li>
-              <li>Πατάμε το κουμπί <strong>SETUP</strong> συνεχόμενα.</li>
-              <li>Βάζουμε μέσα το τραπέζι με το <strong>πάνω βελάκι</strong> μέχρι να έρθει το υλικό κάτω από τον αισθητήρα ύψους.</li>
-              <li>Αν χρειαστεί, κατεβάζουμε λίγο το τραπέζι με το κουμπί <strong>DOWN</strong>.</li>
-              <li>Ανεβάζουμε το τραπέζι με το κουμπί <strong>UP</strong> μέχρι να σταματήσει.</li>
-              <li>Πατάμε το δεξί βελάκι.</li>
-              <li>Όταν η οθόνη εμφανίσει <strong>AUTO DETECTION</strong>, πατάμε <strong>ENTER</strong>.</li>
-              <li>Αφού βρει αυτόματα το ύψος, κατεβάζουμε λίγο χειροκίνητα το τραπέζι για περισσότερη ασφάλεια.</li>
-              <li>Πατάμε ξανά <strong>SETUP</strong> συνεχόμενα.</li>
-              <li>Όταν η οθόνη γράψει <strong>SETUP MEDIA</strong>, πατάμε <strong>SETUP</strong>.</li>
-              <li>Πατάμε <strong>DOWN</strong> 3-4 φορές.</li>
-              <li>Πατάμε <strong>ENTER</strong>.</li>
-            </ol>
-
-            <div class="danger">
-              <strong>Προσοχή:</strong><br>
-              Αν το ύψος δεν έχει ρυθμιστεί σωστά, υπάρχει κίνδυνος να ακουμπήσει και να καταστραφεί η κεφαλή.
+            <div class="subtabs">
+                <button class="subtab-button laser-sub active" onclick="openSubTab(event, 'laser-basic')">Βασικά</button>
+                <button class="subtab-button laser-sub" onclick="openSubTab(event, 'laser-file')">Αρχείο Κοπής</button>
+                <button class="subtab-button laser-sub" onclick="openSubTab(event, 'laser-trouble')">Troubleshooting</button>
             </div>
-          </div>
-        </li>
 
-        <li>
-          Τυπώνουμε τα μέτρα στο χαρτί. Τα μέτρα που χρησιμοποιούμε συχνά βρίσκονται στο
-          <strong>VersaWorks</strong>, στην καρτέλα <strong>Deigmata</strong>.
-          Επιλέγουμε αυτό που θέλουμε και πατάμε <strong>Print</strong>.
-        </li>
+            <div id="laser-basic" class="subtab-content active">
+                <h3>Τι κάνει το Laser</h3>
+                <p>Κόβει ή χαράζει υλικά, όπως plexiglass, με βάση το αρχείο που ετοιμάζεται στον υπολογιστή.</p>
 
-        <li>Τοποθετούμε το υλικό που θα τυπώσουμε στο τραπέζι σύμφωνα με τα μέτρα.</li>
-
-        <li>
-          <button class="step-btn" onclick="toggleGuide('height-guide-2')">
-            Ρυθμίζουμε ξανά το ύψος του τραπεζιού
-          </button>
-
-          <div id="height-guide-2" class="guide-box">
-            <h4>Δεύτερη ρύθμιση ύψους μετά την τοποθέτηση υλικού</h4>
-            <ol>
-              <li>Βεβαιωνόμαστε ότι το υλικό έχει τοποθετηθεί σωστά και δεν κουνιέται.</li>
-              <li>Πατάμε το κουμπί <strong>SETUP</strong> συνεχόμενα.</li>
-              <li>Φέρνουμε το υλικό κάτω από τον αισθητήρα ύψους.</li>
-              <li>Πατάμε δεξί βελάκι μέχρι να εμφανιστεί <strong>AUTO DETECTION</strong>. Πατάμε <strong>ENTER</strong>.</li>
-              <li>Πατάμε το κουμπί <strong>SETUP</strong> συνεχόμενα.</li>
-	      <li>Όταν η οθόνη γράψει πάλι <strong>SETUP MEDIA</strong>, πατάμε το κουμπί <strong>SETUP</strong></li>
-              <li>Μετά την αυτόματη ρύθμιση, κατεβάζουμε λίγο το τραπέζι με <strong>DOWN</strong> 3-4 φορές.</li>
-              <li>Πατάμε <strong>ENTER</strong>.</li>
-            </ol>
-
-            <div class="notice">
-              <strong>Γιατί το κάνουμε δεύτερη φορά;</strong><br>
-              Επειδή το τελικό υλικό έχει πλέον μπει πάνω στο τραπέζι και πρέπει να μετρηθεί το πραγματικό του ύψος.
+                <div class="info">
+                    <strong>Βασικός στόχος:</strong><br>
+                    Να είναι σωστό το αρχείο πριν σταλεί στο μηχάνημα, γιατί το Laser ακολουθεί ακριβώς τις γραμμές που του δίνουμε.
+                </div>
             </div>
-          </div>
-        </li>
 
-        <li>Επιλέγουμε το τελικό αρχείο στο <strong>VersaWorks</strong> και πατάμε <strong>Print</strong>.</li>
-      </ol>
+            <div id="laser-file" class="subtab-content">
+                <h3>Προετοιμασία αρχείου κοπής</h3>
+                <ul>
+                    <li>Φτιάχνουμε το τελικό περίγραμμα κοπής.</li>
+                    <li>Το περίγραμμα πρέπει να είναι <strong>κόκκινο</strong>.</li>
+                    <li>Το πάχος της γραμμής πρέπει να είναι <strong>hairline</strong>.</li>
+                    <li>Ορίζουμε σελίδα εργασίας <strong>60 x 40 cm</strong>.</li>
+                    <li>Κάνουμε <strong>mirror / καθρεπτισμό</strong> πριν την κοπή.</li>
+                </ul>
+
+                <div class="danger">
+                    <strong>Προσοχή:</strong><br>
+                    Αν η γραμμή δεν είναι hairline, μπορεί να γίνει χάραξη αντί για κοπή.
+                </div>
+            </div>
+
+            <div id="laser-trouble" class="subtab-content">
+                <h3>Troubleshooting Laser</h3>
+                <table>
+                    <tr>
+                        <th>Πρόβλημα</th>
+                        <th>Πιθανή αιτία</th>
+                        <th>Τι κάνω</th>
+                    </tr>
+                    <tr>
+                        <td>Δεν κόβει σωστά</td>
+                        <td>Λάθος πάχος γραμμής ή ρύθμιση υλικού</td>
+                        <td>Ελέγχω hairline, υλικό και ρυθμίσεις ισχύος.</td>
+                    </tr>
+                    <tr>
+                        <td>Κόβει από λάθος πλευρά</td>
+                        <td>Δεν έγινε mirror</td>
+                        <td>Επιστρέφω στο αρχείο και κάνω καθρεπτισμό.</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section id="vulcan" class="tab-content">
+            <span class="badge">Vulcan FC 500 VC</span>
+
+
+            <div class="subtabs">
+                <button class="subtab-button vulcan-sub active" onclick="openSubTab(event, 'vulcan-basic')">Βασικά</button>
+                <button class="subtab-button vulcan-sub" onclick="openSubTab(event, 'vulcan-cut')">Διαδικασία Κοπής</button>
+                <button class="subtab-button vulcan-sub" onclick="openSubTab(event, 'vulcan-trouble')">Troubleshooting</button>
+            </div>
+
+            <div id="vulcan-basic" class="subtab-content active">
+                <h3>Τι κάνει το Vulcan</h3>
+                <p>Κόβει εκτυπωμένα αυτοκόλλητα ή χαρτιά με βάση σημάδια αναγνώρισης.</p>
+
+                <div class="info">
+                    <strong>Βασικός στόχος:</strong><br>
+                    Να διαβάσει σωστά τα registration marks και να κόψει ακριβώς γύρω από το σχέδιο.
+                </div>
+            </div>
+
+            <div id="vulcan-cut" class="subtab-content">
+                <h3>Διαδικασία κοπής</h3>
+                <ol>
+                    <li>Ανοίγω το <strong>CorelDRAW 2017</strong>.</li>
+                    <li>Εισάγω το αρχείο.</li>
+                    <li>Δημιουργώ νέα σελίδα στις πραγματικές διαστάσεις του χαρτιού.</li>
+                    <li>Επιλέγω <strong>Create Registration Marks</strong>.</li>
+                    <li>Στέλνω στο <strong>SignCut Pro 2</strong>.</li>
+                    <li>Τοποθετώ το χαρτί στο Vulcan.</li>
+                    <li>Ορίζω <strong>Origin</strong>.</li>
+                    <li>Ενεργοποιώ <strong>Vacuum</strong>.</li>
+                    <li>Κάνω <strong>Test Cut</strong> αν δεν είμαι σίγουρος.</li>
+                    <li>Πατάω <strong>Cut Out</strong>.</li>
+                </ol>
+
+                <table>
+                    <tr>
+                        <th>Υλικό</th>
+                        <th>Tool Force</th>
+                        <th>Tool Speed</th>
+                    </tr>
+                    <tr>
+                        <td>Αυτοκόλλητο / Sticker / Vinyl</td>
+                        <td>80</td>
+                        <td>700</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="vulcan-trouble" class="subtab-content">
+                <h3>Troubleshooting Vulcan</h3>
+                <table>
+                    <tr>
+                        <th>Πρόβλημα</th>
+                        <th>Πιθανή αιτία</th>
+                        <th>Τι κάνω</th>
+                    </tr>
+                    <tr>
+                        <td>Κόβει στραβά</td>
+                        <td>Λάθος origin ή κακή ευθυγράμμιση φύλλου</td>
+                        <td>Ξαναβάζω το φύλλο ίσια και ορίζω ξανά origin.</td>
+                    </tr>
+                    <tr>
+                        <td>Δεν κόβει αρκετά</td>
+                        <td>Χαμηλή δύναμη μαχαιριού</td>
+                        <td>Κάνω test cut και αυξάνω σταδιακά το force.</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section id="roland" class="tab-content">
+            <span class="badge">Roland VersaUV LEF2-200</span>
+            <h2>Roland UV Printer</h2>
+
+            <div class="subtabs">
+                <button class="subtab-button roland-sub active" onclick="openSubTab(event, 'roland-daily')">Καθημερινός Έλεγχος</button>
+                <button class="subtab-button roland-sub" onclick="openSubTab(event, 'roland-cleaning')">Καθαρισμοί</button>
+                <button class="subtab-button roland-sub" onclick="openSubTab(event, 'roland-height')">Ύψος Τραπεζιού</button>
+                <button class="subtab-button roland-sub" onclick="openSubTab(event, 'roland-print')">Εκτύπωση</button>
+                <button class="subtab-button roland-sub" onclick="openSubTab(event, 'roland-trouble')">Troubleshooting</button>
+            </div>
+
+            <div id="roland-daily" class="subtab-content active">
+                <h3>Καθημερινός Έλεγχος</h3>
+
+                <div class="checklist">
+                    <li> Ανακινώ καλά τα δοχεία μελανιού.</li>
+                    <li> Ανοίγω τον εκτυπωτή και περιμένω να είναι έτοιμος.</li>
+                    <li>Κάνω πάντα Test Print.</li>
+                    <li> Ελέγχω αν υπάρχουν γραμμές ή κενά στην εκτύπωση.</li>
+                    <li> Ελέγχω ότι το τραπέζι και το υλικό είναι καθαρά.</li>
+                </div>
+
+                <div class="notice">
+                    <strong>Λευκό μελάνι:</strong><br>
+                    Καλό είναι να χρησιμοποιείται συχνά. Αν μείνει στάσιμο, μπορεί να θολώσει η κεφαλή και να χρειαστούν πολλοί καθαρισμοί.
+                </div>
+            </div>
+
+            <div id="roland-cleaning" class="subtab-content">
+                <h3>Καθαρισμοί</h3>
+
+                <h2>1. Head Refresh</h2>
+
+                <ol>
+                    <li>Όταν εμφανιστεί <strong>DO HEAD REFRESH?</strong>, πατάμε <strong>ENTER</strong> και επιλέγουμε <strong>YES</strong>.</li>
+                    <li>Όταν εμφανιστεί <strong>SET HEAD REFRESHER</strong>, ετοιμάζουμε το εξάρτημα.</li>
+                    <li>Βάζουμε τα ειδικά μαντηλάκια μέσα στο εξάρτημα.</li>
+                    <li>Τοποθετούμε το εξάρτημα σωστά στο μηχάνημα και πατάμε <strong>ENTER</strong>.</li>
+                    <li>Όταν εμφανιστεί <strong>APPLY CL LIQUID START REFRESH</strong>, ρίχνουμε ειδικό υγρό καθαρισμού CL στο μαντηλάκι.</li>
+                    <li> Κλείνουμε το καπάκι και πατάμε <strong>ENTER</strong>. </li>
+                    <li>Όταν εμφανιστεί <strong>REMOVE HEAD REFRESHER</strong>, αφαιρούμε το εξάρτημα.</li>
+                    <li>Πετάμε το χρησιμοποιημένο μαντηλάκι, κλείνουμε το καπάκι και πατάμε <strong>ENTER</li>
+
+                </ol>
+
+
+                <div class="danger">
+                    <strong>Προσοχή:</strong><br>
+                    Εάν θέλουμε να κάνουμε HEAD REFRESH χωρίς να έχει εμφανιστεί στην οθόνη το κάνουμε από το <strong>FUNCTION > CLEANING > HEAD REFRESH</strong>
+                </div>
+
+                <h2>2. Καθαρισμός με μπατονέτα (Μια φορά την εβδομάδα)</h2>
+                <ol>
+                    <li>Φοράμε γάντια.</li>
+                    <li>Χρησιμοποιούμε ειδική μπατονέτα και cleaning liquid.</li>
+                    <li>Μπαίνουμε από <strong>Menu > Sub Menu > Maintenance > Cleaning</strong>.</li>
+                    <li>Περιμένουμε να μετακινηθεί η κεφαλή στη σωστή θέση. </li>
+                    <li>Καθαρίζουμε προσεκτικά γύρω από την κεφαλή.</li>
+                    <li>Καθαρίζουμε τα καπάκια και τα wipers.</li>
+                    <li>Κλείνουμε το καπάκι.</li>
+                    <li>Πατάμε <strong>ENTER</strong> όταν εμφανιστεί <strong>FINISHED</strong>.</li>
+                </ol>
+
+                <div class="danger">
+                    <strong>Προσοχή:</strong><br>
+                    Δεν ακουμπάμε ποτέ τα ακροφύσια της κεφαλής από κάτω. Καθαρίζουμε μόνο γύρω-γύρω.
+                </div>
+                <h2>3. Αυτόματος Καθαρισμός</h2>
+                <ol>
+                    <li>Εκτελείται από το <strong>FUNCTION > CLEANING > (NORMAL CL, MEDIUM CL, POWERFULL CL)</strong></li>
+                    <li>Επιλέγουμε έναν  από τους τρείς καθαρισμούς ανάλογα την περίσταση πατώντας <strong>ENTER</strong>.</li>
+                    <li>Θα μας εμφανίσει στην οθόνη : <strong>AB</strong></li>
+                    <li>Επιλέγοντας κάποιο με τα βελάκια <strong>< ή ></strong> μπορούμε να σβήσουμε ένα από τα δύο εάν δεν θέλουμε να κάνει σε όλες τις κεφαλές καθαρισμό με τα βελάκια <strong>Πάνω ή Κάτω</strong> <strong></strong></li>
+                    <li>Καθαρίζουμε προσεκτικά γύρω από την κεφαλή.</li>
+                    <li>Καθαρίζουμε τα καπάκια και τα wipers.</li>
+                    <li>Κλείνουμε το καπάκι.</li>
+                    <li>Πατάμε <strong>ENTER</strong> όταν εμφανιστεί <strong>FINISHED</strong>.</li>
+                </ol>
+            </div>
+
+            <div id="roland-height" class="subtab-content">
+                <h3>Ύψος Τραπεζιού</h3>
+
+                <p>
+                    Η ρύθμιση ύψους είναι απαραίτητη για να μη χτυπήσει η κεφαλή επάνω στο υλικό και για να γίνει σωστή εκτύπωση.
+                </p>
+
+                <ol>
+                    <li>Τοποθετούμε το υλικό στο τραπέζι, εκτός αν θέλουμε να τυπώσουμε κατευθείαν πάνω στο χαρτί.</li>
+                    <li>Βεβαιωνόμαστε ότι το υλικό είναι σταθερό.</li>
+                    <li>Πατάμε το κουμπί <strong>SETUP</strong> συνεχόμενα.</li>
+                    <li>Βάζουμε μέσα το τραπέζι με το <strong>πάνω βελάκι</strong> μέχρι να έρθει το υλικό κάτω από τον αισθητήρα ύψους. Μπορεί να χρειαστεί να κατέβει λίγο το τραπέζι με το κουμπί <strong>DOWN</strong>.</li>
+                    <li>Ανεβάζουμε το τραπέζι με το κουμπί <strong>UP</strong> μέχρι να σταματήσει.</li>
+                    <li>Πατάμε το δεξί βελάκι και όταν η οθόνη εμφανίσει <strong>AUTO DETECTION</strong>, πατάμε <strong>ENTER</strong>.</li>
+                    <li>Αφού βρει αυτόματα το ύψος του τραπεζιού, το κατεβάζουμε λίγο χειροκίνητα για περισσότερη ασφάλεια.</li>
+                    <li>Πατάμε το κουμπί <strong>SETUP</strong> συνεχόμενα.</li>
+                    <li>Όταν η οθόνη γράψει πάλι <strong>SETUP MEDIA</strong>, πατάμε το κουμπί <strong>SETUP</strong>.</li>
+                    <li>Πατάμε το κουμπί <strong>DOWN</strong> 3-4 φορές για να κατέβει λίγο το τραπέζι.</li>
+                    <li>Πατάμε <strong>ENTER</strong>.</li>
+                </ol>
+
+                <div class="danger">
+                    <strong>Προσοχή:</strong><br>
+                    Αν το ύψος δεν έχει ρυθμιστεί σωστά, υπάρχει κίνδυνος να ακουμπήσει και να καταστραφεί η κεφαλή.
+                </div>
+            </div>
+
+            <div id="roland-print" class="subtab-content">
+                <h3>Εκτύπωση</h3>
+
+                <div class="info">
+                    <strong>Βασική λογική:</strong><br>
+                    Πρώτα τυπώνουμε οδηγούς στο τραπέζι, μετά τοποθετούμε το υλικό επάνω στους οδηγούς, ξαναρυθμίζουμε το ύψος και μετά τυπώνουμε το τελικό αρχείο.
+                </div>
+
+                <ol>
+                    <li>
+                        <button class="step-btn" onclick="toggleGuide('height-guide-1')">
+                            Ρυθμίζουμε το ύψος του τραπεζιού
+                        </button>
+
+                        <div id="height-guide-1" class="guide-box">
+                            <h4>Διαδικασία ρύθμισης ύψους τραπεζιού</h4>
+                            <ol>
+                                <li>Τοποθετούμε το υλικό στο τραπέζι, εκτός αν θέλουμε να τυπώσουμε κατευθείαν πάνω στο χαρτί.</li>
+                                <li>Βεβαιωνόμαστε ότι το υλικό είναι σταθερό.</li>
+                                <li>Πατάμε το κουμπί <strong>SETUP</strong> συνεχόμενα.</li>
+                                <li>Βάζουμε μέσα το τραπέζι με το <strong>πάνω βελάκι</strong> μέχρι να έρθει το υλικό κάτω από τον αισθητήρα ύψους.</li>
+                                <li>Αν χρειαστεί, κατεβάζουμε λίγο το τραπέζι με το κουμπί <strong>DOWN</strong>.</li>
+                                <li>Ανεβάζουμε το τραπέζι με το κουμπί <strong>UP</strong> μέχρι να σταματήσει.</li>
+                                <li>Πατάμε το δεξί βελάκι.</li>
+                                <li>Όταν η οθόνη εμφανίσει <strong>AUTO DETECTION</strong>, πατάμε <strong>ENTER</strong>.</li>
+                                <li>Αφού βρει αυτόματα το ύψος, κατεβάζουμε λίγο χειροκίνητα το τραπέζι για περισσότερη ασφάλεια.</li>
+                                <li>Πατάμε ξανά <strong>SETUP</strong> συνεχόμενα.</li>
+                                <li>Όταν η οθόνη γράψει <strong>SETUP MEDIA</strong>, πατάμε <strong>SETUP</strong>.</li>
+                                <li>Πατάμε <strong>DOWN</strong> 3-4 φορές.</li>
+                                <li>Πατάμε <strong>ENTER</strong>.</li>
+                            </ol>
+
+                            <div class="danger">
+                                <strong>Προσοχή:</strong><br>
+                                Αν το ύψος δεν έχει ρυθμιστεί σωστά, υπάρχει κίνδυνος να ακουμπήσει και να καταστραφεί η κεφαλή.
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        Τυπώνουμε τα μέτρα στο χαρτί. Τα μέτρα που χρησιμοποιούμε συχνά βρίσκονται στο
+                        <strong>VersaWorks</strong>, στην καρτέλα <strong>Deigmata</strong>.
+                        Επιλέγουμε αυτό που θέλουμε και πατάμε <strong>Print</strong>.
+                    </li>
+
+                    <li>Τοποθετούμε το υλικό που θα τυπώσουμε στο τραπέζι σύμφωνα με τα μέτρα.</li>
+
+                    <li>
+                        <button class="step-btn" onclick="toggleGuide('height-guide-2')">
+                            Ρυθμίζουμε ξανά το ύψος του τραπεζιού
+                        </button>
+
+                        <div id="height-guide-2" class="guide-box">
+                            <h4>Δεύτερη ρύθμιση ύψους μετά την τοποθέτηση υλικού</h4>
+                            <ol>
+                                <li>Βεβαιωνόμαστε ότι το υλικό έχει τοποθετηθεί σωστά και δεν κουνιέται.</li>
+                                <li>Πατάμε το κουμπί <strong>SETUP</strong> συνεχόμενα.</li>
+                                <li>Φέρνουμε το υλικό κάτω από τον αισθητήρα ύψους.</li>
+                                <li>Πατάμε δεξί βελάκι μέχρι να εμφανιστεί <strong>AUTO DETECTION</strong>. Πατάμε <strong>ENTER</strong>.</li>
+                                <li>Πατάμε το κουμπί <strong>SETUP</strong> συνεχόμενα.</li>
+                                <li>Όταν η οθόνη γράψει πάλι <strong>SETUP MEDIA</strong>, πατάμε το κουμπί <strong>SETUP</strong></li>
+                                <li>Μετά την αυτόματη ρύθμιση, κατεβάζουμε λίγο το τραπέζι με <strong>DOWN</strong> 3-4 φορές.</li>
+                                <li>Πατάμε <strong>ENTER</strong>.</li>
+                            </ol>
+
+                            <div class="notice">
+                                <strong>Γιατί το κάνουμε δεύτερη φορά;</strong><br>
+                                Επειδή το τελικό υλικό έχει πλέον μπει πάνω στο τραπέζι και πρέπει να μετρηθεί το πραγματικό του ύψος.
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>Επιλέγουμε το τελικό αρχείο στο <strong>VersaWorks</strong> και πατάμε <strong>Print</strong>.</li>
+                </ol>
+            </div>
+
+            <div id="roland-trouble" class="subtab-content">
+                <h3>Troubleshooting Roland UV Printer</h3>
+
+                <table>
+                    <tr>
+                        <th>Πρόβλημα</th>
+                        <th>Πιθανή αιτία</th>
+                        <th>Τι κάνω</th>
+                    </tr>
+                    <tr>
+                        <td>Βγαίνουν γραμμές στην εκτύπωση</td>
+                        <td>Σκόνη, χνούδια στην κεφαλή</td>
+                        <td>Βάζω το μηχάνημα σε λειτουργία cleaning και καθαρίζω καλά.</td>
+                    </tr>
+                    <tr>
+                        <td>Δεν τυπώνει καλά το λευκό</td>
+                        <td>Το μηχάνημα δεν τύπωσε λευκό για αρκετές μέρες</td>
+                        <td>Κάνω καθαρισμό(NORMAL CL, MEDIUM CL, POWERFULL CL)ανάλογα με την περίσταση και μικρή εκτύπωση με λευκό.</td>
+                    </tr>
+                    <tr>
+                        <td>Η εκτύπωση βγήκε στραβά</td>
+                        <td>Λάθος τοποθέτηση υλικού</td>
+                        <td>Ελέγχω τους οδηγούς και ξεκινώ από κάτω δεξιά.</td>
+                    </tr>
+                    <tr>
+                        <td>Μύνημα "AJUST TABLE HIGHT" </td>
+                        <td>Λάθος ύψος τραπεζιού</td>
+                        <td>Σταματώ και κάνω ξανά ρύθμιση του ύψους.</td>
+                    </tr>
+                </table>
+            </div>
+            <section>
+
     </div>
 
-    <div id="roland-trouble" class="subtab-content">
-      <h3>Troubleshooting Roland UV Printer</h3>
+    <footer>
+        Οδηγός εργαστηρίου - Build by PeRGio
+    </footer>
 
-      <table>
-        <tr>
-          <th>Πρόβλημα</th>
-          <th>Πιθανή αιτία</th>
-          <th>Τι κάνω</th>
-        </tr>
-        <tr>
-          <td>Βγαίνουν γραμμές στην εκτύπωση</td>
-          <td>Σκόνη, χνούδια στην κεφαλή</td>
-          <td>Βάζω το μηχάνημα σε λειτουργία cleaning και καθαρίζω καλά.</td>
-        </tr>
-        <tr>
-          <td>Δεν τυπώνει καλά το λευκό</td>
-          <td>Το μηχάνημα δεν τύπωσε λευκό για αρκετές μέρες</td>
-          <td>Κάνω καθαρισμό(NORMAL CL, MEDIUM CL, POWERFULL CL)ανάλογα με την περίσταση και μικρή εκτύπωση με λευκό.</td>
-        </tr>
-        <tr>
-          <td>Η εκτύπωση βγήκε στραβά</td>
-          <td>Λάθος τοποθέτηση υλικού</td>
-          <td>Ελέγχω τους οδηγούς και ξεκινώ από κάτω δεξιά.</td>
-        </tr>
-        <tr>
-          <td>Μύνημα "AJUST TABLE HIGHT" </td>
-          <td>Λάθος ύψος τραπεζιού</td>
-          <td>Σταματώ και κάνω ξανά ρύθμιση του ύψους.</td>
-        </tr>
-      </table>
-    </div>
-  <section>
+    <script>
+        function openMainTab(event, tabName) {
+            var tabContents = document.getElementsByClassName("tab-content");
+            var tabButtons = document.getElementsByClassName("tab-button");
 
-</div>
+            for (var i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
 
-<footer>
-  Οδηγός εργαστηρίου - Build by PeRGio
-</footer>
+            for (var j = 0; j < tabButtons.length; j++) {
+                tabButtons[j].classList.remove("active");
+            }
 
-<script>
-  function openMainTab(event, tabName) {
-    var tabContents = document.getElementsByClassName("tab-content");
-    var tabButtons = document.getElementsByClassName("tab-button");
+            document.getElementById(tabName).classList.add("active");
+            event.currentTarget.classList.add("active");
+        }
 
-    for (var i = 0; i < tabContents.length; i++) {
-      tabContents[i].classList.remove("active");
-    }
+        function openSubTab(event, tabName) {
+            var parentSection = event.currentTarget.closest(".tab-content");
+            var subContents = parentSection.getElementsByClassName("subtab-content");
+            var subButtons = parentSection.getElementsByClassName("subtab-button");
 
-    for (var j = 0; j < tabButtons.length; j++) {
-      tabButtons[j].classList.remove("active");
-    }
+            for (var i = 0; i < subContents.length; i++) {
+                subContents[i].classList.remove("active");
+            }
 
-    document.getElementById(tabName).classList.add("active");
-    event.currentTarget.classList.add("active");
-  }
+            for (var j = 0; j < subButtons.length; j++) {
+                subButtons[j].classList.remove("active");
+            }
 
-  function openSubTab(event, tabName) {
-    var parentSection = event.currentTarget.closest(".tab-content");
-    var subContents = parentSection.getElementsByClassName("subtab-content");
-    var subButtons = parentSection.getElementsByClassName("subtab-button");
+            document.getElementById(tabName).classList.add("active");
+            event.currentTarget.classList.add("active");
+        }
 
-    for (var i = 0; i < subContents.length; i++) {
-      subContents[i].classList.remove("active");
-    }
+        function toggleGuide(id) {
+            var box = document.getElementById(id);
 
-    for (var j = 0; j < subButtons.length; j++) {
-      subButtons[j].classList.remove("active");
-    }
-
-    document.getElementById(tabName).classList.add("active");
-    event.currentTarget.classList.add("active");
-  }
-
-  function toggleGuide(id) {
-    var box = document.getElementById(id);
-
-    if (box.style.display === "block") {
-      box.style.display = "none";
-    } else {
-      box.style.display = "block";
-    }
-  }
-</script>
+            if (box.style.display === "block") {
+                box.style.display = "none";
+            } else {
+                box.style.display = "block";
+            }
+        }
+    </script>
 
 </body>
+
 </html>
